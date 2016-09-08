@@ -91,8 +91,11 @@ function TextController($scope, $http) {
         console.log(textMetrics.max);
     };
 
+	$scope.statsLoading=0;
     this.submitText = function() {
-
+		$scope.statsLoading++;
+		$scope.statsLoadingError=null;
+		
         var tm = $scope.textMetrics;
         $http.post('https://textwell-api.herokuapp.com/text/metrics/1gramms', this.mainText).then(
             function(r) {
@@ -111,12 +114,14 @@ function TextController($scope, $http) {
                 for (var i = 0; i < c.length; i++) {
                     $scope.coloredText.push([t[i], c[i]]);
                 }
-
+                
+				$scope.statsLoading--;
             },
 
             function(r) { //error
                 console.log(r);
-                alert(r);
+                $scope.statsLoadingError = getResponseError(data);
+                $scope.statsLoading--;
             }
         );
     };

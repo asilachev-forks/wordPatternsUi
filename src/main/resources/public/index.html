@@ -44,26 +44,26 @@
                     </div>
 
                     <!-- METRICS -->
-                    <div class="widget-sm dashboard-widget col-md-4">
-                        <b><div class="key-value-pair" key="{{msg['metrics.mean']}" value="{{textMetrics.mean}}"></div></b>
+                    <div class="widget-sm dashboard-widget col-md-4" loading="statsLoading" error="{{statsLoadingError}}">
+                        <b><div class="key-value-pair" key="{{msg['metrics.mean']}}" value="{{textMetrics.mean}}"></div></b>
                         <div class="key-value-pair" key="{{msg['metrics.min']}}" value="{{textMetrics.min}}"></div>
                         <div class="key-value-pair" key="{{msg['metrics.max']}}" value="{{textMetrics.max}}"></div>
-                        <div class="key-value-pair" key="{{msg['metrics.count']}" value="{{textMetrics.count}}"></div>
+                        <div class="key-value-pair" key="{{msg['metrics.count']}}" value="{{textMetrics.count}}"></div>
 
                         <button type="button" name="button" class="btn btn-secondary" ng-click="tec.submitText()">Analyse</button>
                     </div><!-- /METRICS -->
 
-                    <div class="widget-sm dashboard-widget col-md-12">
+                    <div class="widget-sm dashboard-widget col-md-12" loading="statsLoading" error="{{statsLoadingError}}">
 
 
                         <div>
 
                             <bar-chart height="100" data="oneGramms.colors"></bar-chart>
-
+		
                         	<rzslider
                                 rz-slider-model="ranges.min"
                                 rz-slider-high="ranges.max"
-                                rz-slider-options="ranges.options"></rzslider>
+                                rz-slider-options="ranges.options"></rzslider><br>
                         </div>
 
 
