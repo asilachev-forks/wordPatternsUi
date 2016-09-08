@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="kdDashboardApp">
+
+    <head>
+        <meta name="viewport" content="initial-scale=1"/>
+
+
+        <!-- 3rd parties JS -->
+
+        <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+        <script src="/assets/vendor/underscore/underscore-min.js"></script>
+        <script src="/assets/vendor/angular/angular.min.js"></script>
+        <script src="/assets/vendor/tether/dist/js/tether.min.js"></script>
+        <script src="/assets/vendor/moment/min/moment.min.js"></script>
+        <script src="/assets/vendor/angularjs-slider/dist/rzslider.min.js"></script>
+
+		<script src="https://d3js.org/d3.v4.min.js"></script>
+
+
+        <!-- app JS -->
+        <script src="/assets/js/dashboard_components.js"></script>
+        <script src="/assets/js/tools.js"></script>
+        <script src="/assets/js/histo.js"></script>
+        <script src="/assets/js/app.js"></script>
+
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="/assets/css/az.css">
+
+        <link rel="stylesheet" href="/assets/vendor/angularjs-slider/dist/rzslider.min.css">
+
+    </head>
+
+    <!-- END OF HEAD -->
+
+    <body >
+
+        <main class="container-fluid dashboard">
+
+            <div ng-cloak>
+
+
+
+                <section class="row" ng-controller="textCtrl as tec">
+
+                    <div class="widget-sm dashboard-widget col-md-8" title="Enter text here">
+
+                        <textarea rows="8" style="width:100%" ng-model="tec.mainText"></textarea>
+
+
+
+
+
+
+                    </div>
+
+                    <!-- METRICS -->
+                    <div class="widget-sm dashboard-widget col-md-4" title="Metrics">
+                        <b><div class="key-value-pair" key="Mean" value="{{textMetrics.mean}}"></div></b>
+                        <div class="key-value-pair" key="Min" value="{{textMetrics.min}}"></div>
+                        <div class="key-value-pair" key="Max" value="{{textMetrics.max}}"></div>
+                        <div class="key-value-pair" key="Число лексем" value="{{textMetrics.count}}">(влючая пробелы и пунктуацию)</div>
+
+                        <button type="button" name="button" class="btn btn-secondary" ng-click="tec.submitText()">Analyse</button>
+                    </div><!-- /METRICS -->
+
+                    <div class="widget-sm dashboard-widget col-md-12">
+
+
+                        <div>
+
+
+
+
+                            <bar-chart height="100" data="oneGramms.colors"></bar-chart>
+ 
+                        	<rzslider
+                                rz-slider-model="ranges.min"
+                                rz-slider-high="ranges.max"
+                                rz-slider-options="ranges.options"></rzslider>
+                        </div>
+
+
+	                    <div id="text-editor-2" class="editable2">
+                        	<span ng-repeat="v in coloredText" style="{{tec.textStyle(v[1])}}">{{v[0]}}</span>
+                        </div>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+        <!-- <script>var editor = new MediumEditor('.editable');</script>
+        <script>var editor2 = new MediumEditor('.editable2');</script> -->
+    </body>
+</html>

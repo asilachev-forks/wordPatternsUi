@@ -1,0 +1,457 @@
+@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,100,300,700);
+@import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
+
+$fa-font-path: "/assets/vendor/components-font-awesome/fonts" !default;
+//@import "font-awesome/scss/font-awesome";
+ 
+//// Core variables and mixins
+@import "variables";
+@import "commons";
+@import "chart";
+ 
+@import "bootstrap/scss/mixins";
+//
+//// Reset and dependencies
+@import "bootstrap/scss/normalize";
+//
+//// Core CSS
+
+@import "bootstrap/scss/reboot";
+@import "bootstrap/scss/type";
+//@import "bootstrap/scss/images";
+@import "bootstrap/scss/grid";
+@import "bootstrap/scss/forms";
+@import "bootstrap/scss/buttons";
+
+// // Components
+//@import "bootstrap/scss/animation";
+@import "bootstrap/scss/dropdown";
+@import "bootstrap/scss/input-group";
+@import "bootstrap/scss/custom-forms";
+@import "bootstrap/scss/nav";
+@import "bootstrap/scss/navbar";
+//@import "bootstrap/scss/card";
+//@import "bootstrap/scss/jumbotron";
+@import "bootstrap/scss/alert";
+@import "bootstrap/scss/progress";
+@import "bootstrap/scss/media";
+
+
+// Components w/ JavaScript
+//@import "bootstrap/scss/modal";
+//@import "bootstrap/scss/tooltip";
+
+// Utility classes
+@import "bootstrap/scss/utilities";  
+ 
+
+
+$sidebar-width:5.5cm;
+ 
+#wrapper.toggled {
+    padding-left: $sidebar-width;
+}
+
+#wrapper.toggled #sidebar-wrapper {
+    width: $sidebar-width;
+}
+
+#sidebar-wrapper {
+    z-index: 1000;
+    position: fixed;
+    left: $sidebar-width;
+    width: 0;
+    height: 100%;
+    margin-left: -$sidebar-width;
+    overflow-y: auto;
+    background: $gray-dark;
+    
+    @extend .sizeTransition;
+}
+
+#page-content-wrapper {
+    width: 100%;
+    position: absolute;
+}
+
+@include media-breakpoint-up(lg) {
+    #wrapper {
+        padding-left: $sidebar-width;
+    }
+
+    #wrapper.toggled {
+        padding-left: 0;
+    }
+
+    #sidebar-wrapper {
+        width: $sidebar-width;
+    }
+
+    #wrapper.toggled #sidebar-wrapper {
+        width: 0;
+    }
+
+    #page-content-wrapper {
+        position: relative;
+    }
+
+    #wrapper.toggled #page-content-wrapper {
+        position: relative;
+        margin-right: 0;
+    }
+}
+
+ 
+   
+footer.container, footer .container, header.container{
+    padding: 0;
+}
+
+.row{
+    margin: 0;
+    padding: 0;
+}
+
+.row-no-padding {
+  [class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}
+
+
+h3{
+    small{
+        font-weight: 100;
+        font-size: $font-size-sm;
+    }
+}
+
+body{
+    @extend .sans;
+    background: $gray-lighter;
+}
+
+.container, .container-fluid{
+//    background: $palette-color-1;
+ }
+
+.container-fluid{
+    @include media-breakpoint-down(md) {
+        padding-left:  $spacer/8;
+        padding-right: $spacer/8;
+    }  
+}
+
+
+footer{
+     .container{
+        background: $gray!important;
+    }
+}
+.navbar{
+    font-weight: 300;
+}
+
+ 
+h1{
+    font-weight: 200;
+    font-size:  $font-size-h1;
+    padding: $spacer;
+    
+    small{
+        display: block;
+        line-height: 1.2;
+         font-size: 50%;
+         @extend .sans-thin;
+    }
+}
+
+
+
+.key-value-pair{
+    background:  $panel-bg;
+    border-bottom: 1px solid $shadow-color;
+    position: relative;
+    
+    &:last-of-type {
+        border-bottom: 1px solid transparent;
+    }
+    
+    .key {
+        overflow: hidden;   
+        padding-left: 0;
+    }
+    
+    .value {
+        position: absolute;
+        right: 0;
+        top: 0;
+        //overflow: hidden;   
+        padding-right: 0;
+        z-index: 200;
+        &:before{
+            position: relative;
+            right: 0;
+            padding-left: 3rem;
+            content: "  ";
+            @include gradient-left(rgba($panel-bg, 0), rgba($panel-bg, 1));
+        }
+        &:after{
+            background: $panel-bg;
+            content: " ";
+            position: absolute;
+            left:3rem;
+            right:0;
+            top:0;
+            bottom:0;
+            z-index:-100;
+        }
+        
+    }
+    
+    padding: $spacer/6;
+}
+
+.card{
+    border: none;
+    background: $panel-bg;
+}
+
+.panel, .card.panelish{
+    background: $panel-bg;
+    border-radius: 0;    
+    border-radius: 0;
+}
+
+section{
+    //padding-bottom: $spacer/2;        
+}
+
+main{
+    min-height: 80vh;
+}
+
+main.container{
+    background-color: $panel-bg;
+    padding: $spacer;
+    
+    h1{
+        padding-left: 0;
+        padding-right: 0;
+    }
+ 
+}
+
+main.container.dashboard{
+    background-color: $white;
+    padding: 0;
+    
+    h1{
+        padding-left:  $spacer;
+        padding-right:  $spacer;
+    }
+}
+
+.modal-header small{
+    font-weight: 200;
+    display: block;
+    font-size: $font-size-base;
+}
+
+.dashboard{
+       
+    .panel, .card.panelish{        
+        small{
+            font-weight: 200;            
+            display: block;
+        }
+      
+    }
+}
+
+
+$panel-body-padding: $spacer/2;
+
+.with-footer .panel-body{
+    padding-bottom: 2* $panel-body-padding + $font-size-h2;
+}
+
+.no-padding-panel{
+    .panel-body{
+        padding: 0;
+    }
+}
+
+.panel-body{
+    padding: $panel-body-padding;  
+    
+    //
+ 
+    footer{
+        padding-top: $panel-body-padding;
+        border-top: 1px solid $shadow-color;
+        text-align: center;
+        
+        text-transform: uppercase;
+        
+        position: absolute;
+        bottom: $panel-body-padding;
+        left: $panel-body-padding;
+        right: $panel-body-padding;
+    } 
+}
+.panel-body, .modal-body{
+    border-radius: 0;
+        
+    .error{
+        margin: 0;
+        margin-bottom: $spacer;
+    }
+}
+
+.row.full{
+    margin-left: -$padding-base;
+    margin-right: -$padding-base;
+    
+    div.col{
+        &:first-of-type{
+            padding-left: $padding-base;
+        }
+        &:last-of-type{
+            padding-right: $padding-base;
+        }
+    }
+}
+
+.panel-heading{
+    border: none;
+    border-radius: 0;
+    margin: 0;
+    padding: 0;
+}
+
+.panel-title, .card-title{
+    color: $black;
+    border-radius: 0;
+    margin: 0;
+    padding: $padding-half;
+    text-align: left;
+    @extend .sans-thin
+}
+     
+
+.selectable{
+    cursor: pointer;  
+    
+    &:hover{
+        background-color: $table-bg-hover; 
+        @extend .colorTransition;
+    }
+}
+ 
+
+
+.selected{    
+    @extend .colorTransition;    
+
+    &:hover{
+        background: $gray-lightest;
+        border-bottom-color: transparent;
+        @extend .colorTransition;
+    }
+    
+    .network-logo{
+        @extend .sizeTransition;
+    }
+    
+    hr{
+        border-top-width: $padding-small / 2;
+        border-top-color: $gray-light;
+        margin-left: -($padding-base - $padding-small);
+        margin-right: -($padding-base - $padding-small);
+    }
+    
+}
+ 
+
+section.dashboard-widget{
+    .full-width{
+        margin-left: -$spacer;
+        margin-right: -$spacer;    
+    }
+}
+
+div.dashboard-widget{
+    .full-width{
+        margin-left: -$spacer / 2;
+        margin-right: -$spacer /2;    
+    }
+}
+ 
+
+
+.dashboard-widget{
+    background: none;
+    padding-left: $spacer/2;
+    padding-right: $spacer/2;
+    padding-bottom: $spacer/4;
+    padding-top: $spacer/4;
+    @extend .panel; 
+    
+    @include media-breakpoint-down(md) {
+        padding-left:  $spacer/8;
+        padding-right: $spacer/8;
+    }
+    
+    .panel{
+        border: 1px solid $shadow-color;
+        border-radius: $panel-border-radius;
+        
+        padding: 0; 
+        margin: 0;
+        background: $panel-bg;
+        height: 100%;
+    }
+
+}
+
+
+.dashboard-widget.selected{
+     .panel{
+        border-top: $panel-border-top solid $selected-color;
+    }
+}
+
+.loading{
+    background: $overlay-bg;
+    z-index: 500;
+    position: absolute;
+    top:0; bottom:0; left:0; right:0;
+    text-align: center;
+    vertical-align: middle;
+    padding: $spacer;
+    font-weight: 300;
+}
+
+.panel{
+    position: relative;
+}
+ 
+  
+
+
+.clip-contents{
+    overflow: hidden;    
+}
+
+
+.smart-btn{
+    @extend .btn;
+    font-size: $font-size-sm;
+//    
+//    @include media-breakpoint-down(md) {
+//        
+//    }
+    
+}

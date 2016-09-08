@@ -1,0 +1,46 @@
+$palette-color-t: rgba(0,0,0, 0.0);
+
+
+$palette-color-green: #38b923;
+$palette-color-green-dark: #369c25;
+$palette-color-red: #fb1f1f;
+
+//oranges
+ 
+$palette-color-orange: #f39f0b;
+ 
+ 
+$palette-color-fiolet: #8a6fe5;
+$palette-color-blue: #2b70b3;
+$palette-color-blue-dark: #40557d;
+$palette-color-blue-light: #2a9ff6;
+$palette-color-blue-lighter: #a3d2e7;
+
+$black: #262a30;
+$white: #ffffff;
+
+$panel-bg: $white;
+
+$gray-dark:                 #354052;
+$gray:                      #5b6779;
+$gray-light:                #b7c0cd;
+$gray-lighter:              #f5f5f5;
+$gray-lightest:             rgba($gray-lighter, 0.5);
+
+$overlay-bg: rgba($gray-lightest, 0.9);
+$shadow-color: rgba($gray-dark, 0.1);
+
+
+$selection-color: $palette-color-blue-lighter;
+$selected-color: $gray-light;
+
+
+$brand-primary:             $palette-color-blue !default;
+$brand-success:             $palette-color-green !default;
+$brand-info:                $palette-color-blue-light !default;
+$brand-warning:             $palette-color-orange !default;
+$brand-danger:              $palette-color-red !default;
+$brand-inverse:             $gray-dark !default;
+
+
+  

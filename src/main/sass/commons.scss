@@ -1,0 +1,55 @@
+
+@import "colors";
+@import "variables";
+    
+$default-padding:$spacer;
+
+$half-padding:$default-padding/2;
+
+$padding-base:$spacer;
+$padding-half:$padding-base/2;
+$padding-small:$padding-base/4;
+$padding-double:$padding-base * 2;
+ 
+
+$panel-border-top:$padding-small/2;
+
+$panel-border-radius:$spacer/10;
+
+.sans{
+    font-family: "Source Sans Pro", sans-serif;
+}
+
+.montserrat{
+    font-family: 'Montserrat', sans-serif;
+}
+
+.sans-thin{
+    font-family: "Source Sans Pro","Roboto-thin", sans-serif;
+    font-weight: 100;
+}
+
+
+$mediumDuration: .4s;
+.colorTransition{
+     -webkit-transition-duration: $mediumDuration;
+             transition-duration: $mediumDuration;
+     -webkit-transition-property: color, background-color, border-color;
+             transition-property: color, background-color, border-color;
+}
+
+.sizeTransition{
+     -webkit-transition-duration: $mediumDuration;
+             transition-duration: $mediumDuration;
+     -webkit-transition-property: font-size, border-width;
+             transition-property: font-size, border-width;
+}
+
+@mixin gradient-left($from-color, $to-color) { 
+    background-image: -webkit-linear-gradient(left, $from-color, $to-color); 
+    background-image:    -moz-linear-gradient(left, $from-color, $to-color);
+    background-image:     -ms-linear-gradient(left, $from-color, $to-color);
+    background: linear-gradient(to right, $from-color 0%, $to-color 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$from-color}', EndColorStr='#{$to-color},GradientType=1')";     
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$from-color', endColorstr='$to-color',GradientType=1 ); /* IE6-9 */
+}
