@@ -3,7 +3,12 @@
 
     <head>
         <meta name="viewport" content="initial-scale=1"/>
-
+        <meta property="article:author" content="https://www.facebook.com/zaborskiy" />
+        <title>Creative writing tools: words stats</title>
+                
+        <meta property="og:description" content="Вот инструмент, исполненный в стремлении разбавить однообразность писанины. Вписывайте в прямоугольник слова, нежно массируйте кнопочку Analyse и наблюдайте спелые лексемы" />
+        <meta property="og:image" content="https://textwell.herokuapp.com/assets/img/ogimage.png" />
+        
 
         <!-- 3rd parties JS -->
 
@@ -24,7 +29,6 @@
 
         <!-- CSS -->
         <link rel="stylesheet" href="/assets/css/az.css">
-
         <link rel="stylesheet" href="/assets/vendor/angularjs-slider/dist/rzslider.min.css">
 
     </head>
@@ -50,11 +54,10 @@
                         <div class="key-value-pair" key="{{msg['metrics.max']}}" value="{{textMetrics.max}}"></div>
                         <div class="key-value-pair" key="{{msg['metrics.count']}}" value="{{textMetrics.count}}"></div>
 
-                        <button type="button" name="button" class="btn btn-secondary" ng-click="tec.submitText()">Analyse</button>
+                        <button type="button" name="button" class="btn btn-primary" ng-click="tec.submitText()">Analyse</button>
                     </div><!-- /METRICS -->
 
                     <div class="widget-sm dashboard-widget col-md-12" loading="statsLoading" error="{{statsLoadingError}}">
-
 
                         <div>
 
@@ -63,9 +66,9 @@
                         	<rzslider
                                 rz-slider-model="ranges.min"
                                 rz-slider-high="ranges.max"
-                                rz-slider-options="ranges.options"></rzslider><br>
+                                rz-slider-options="ranges.options"></rzslider>
                         </div>
-
+						<br><br>
 
 	                    <div id="text-editor-2" class="editable2">
                         	<span ng-repeat="v in coloredText" style="{{tec.textStyle(v[1])}}">{{v[0]}}</span>
