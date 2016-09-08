@@ -10,14 +10,17 @@ angular.module('text_metrics.js', [])
 
 
 function TextController($scope, $http) {
+    $scope.msg = messages;
 
-    this.mainText = 'Dummy text';
+    this.mainText = $scope.msg['placeholder.mainText'];
     $scope.coloredText = 'result';
     // this.mainTextTresholdMax = 240;
     // this.mainTextTresholdMin = 20;
-    
-    $scope.oneGramms={};
-    $scope.oneGramms.colors=[100,200];
+
+
+
+    $scope.oneGramms = {};
+    $scope.oneGramms.colors = [100, 200];
 
     $scope.textMetrics = {
         min: 0,
@@ -91,7 +94,7 @@ function TextController($scope, $http) {
     this.submitText = function() {
 
         var tm = $scope.textMetrics;
-        $http.post('http://localhost:8090/text/metrics/1gramms', this.mainText).then(
+        $http.post('https://textwell-api.herokuapp.com/text/metrics/1gramms', this.mainText).then(
             function(r) {
 
                 $scope.oneGramms = r.data;
@@ -112,11 +115,16 @@ function TextController($scope, $http) {
             },
 
             function(r) { //error
-            	console.log(r);
+                console.log(r);
                 alert(r);
             }
         );
-    }
+    };
+    
+    
+    this.submitText();
+    
+    
 
 
 };
