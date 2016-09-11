@@ -127,18 +127,24 @@
             <section ng-if="exportMode" class="padding-small keep-line-br">
                 {{exportedText}}
             </section>
-	<hr>
+
+             <hr/>
+
             <section class="padding-small">
                 <button ng-if="!exportMode" type="button" class="btn btn-secondary" ng-click="tec.clearAll(true)">Очистить всё!</button>&nbsp;
                 <button ng-if="!exportMode" type="button" class="btn btn-primary" ng-click="tec.exportText()">Экспортировать!</button>&nbsp;
                 <button ng-if="exportMode" type="button" class="btn btn-primary" ng-click="tec.exportText()">Редактировать!</button>&nbsp;
             </section>
-	<hr>
-			<section class="padding-small">
-				Книга жалоб -- <a href="https://github.com/compartia/wordPatternsUi/issues">https://github.com/compartia/wordPatternsUi/issues</a>
-			</section>
-			<br>
-			<br>
+
+            <hr/>
+
+
+            <footer class="padding-small">
+				<small>Книга жалоб: <a href="https://github.com/compartia/wordPatternsUi/issues">GitHub issues</a></small><br>
+                <small>Автор: <a href="http://www.zaborskiy.org/">Artem Zaborskiy</a></small><br>
+                <small>Впервые исполнено на клавиатуре в поселке Убуд, Гианьярcкой области, в 2016 году</small>
+			</footer>
+
         </main>
 
 
