@@ -65,9 +65,9 @@
 	            <!-- METRICS -->
 	            <div  class="col-xl-12 padding-small" ng-show="navState > 2" loading="statsLoading" error="{{statsLoadingError}}">
 	                <div class="row">
-	                    <b     class="col-xs-6 col-md-2 key-value-pair" key="{{msg['metrics.mean']}}"     value="{{textMetrics.mean|number:3}}"></b>
- 	                    <small class="col-xs-6 col-md-3 key-value-pair" key="{{msg['metrics.count']}}"    value="{{textMetrics.count|bigNumber}}"></small>
-	                    <small class="col-xs-6 col-md-5 key-value-pair" key="{{msg['metrics.countAll']}}" value="{{textMetrics.countAll|bigNumber}}"></small>
+	                    <b     class="col-xs-12 col-sm-6 col-md-2 key-value-pair" key="{{msg['metrics.mean']}}"     value="{{textMetrics.mean|number:3}}"></b>
+ 	                    <small class="col-xs-12 col-sm-6 col-md-3 key-value-pair" key="{{msg['metrics.count']}}"    value="{{textMetrics.count|bigNumber}}"></small>
+	                    <small class="col-xs-12 col-sm-6 col-md-5 key-value-pair" key="{{msg['metrics.countAll']}}" value="{{textMetrics.countAll|bigNumber}}"></small>
 	                </div>
 
 
@@ -124,14 +124,14 @@
 
             </section>
 
-            <section ng-if="exportMode" class="keep-line-br">
+            <section ng-if="exportMode" class="padding-small keep-line-br">
                 {{exportedText}}
             </section>
 	<hr>
             <section class="padding-small">
-                <button ng-if="!exportMode" type="button" class="btn btn-secondary" ng-click="tec.clearAll(true)">Очистить всё!</button>
-                <button ng-if="!exportMode" type="button" class="btn btn-primary" ng-click="tec.exportText()">Экспортировать!</button>
-                <button ng-if="exportMode" type="button" class="btn btn-primary" ng-click="tec.exportText()">Редактировать!</button>
+                <button ng-if="!exportMode" type="button" class="btn btn-secondary" ng-click="tec.clearAll(true)">Очистить всё!</button>&nbsp;
+                <button ng-if="!exportMode" type="button" class="btn btn-primary" ng-click="tec.exportText()">Экспортировать!</button>&nbsp;
+                <button ng-if="exportMode" type="button" class="btn btn-primary" ng-click="tec.exportText()">Редактировать!</button>&nbsp;
             </section>
 
         </main>
