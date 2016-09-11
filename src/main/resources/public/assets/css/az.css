@@ -5883,6 +5883,7 @@ input[type="button"] {
   padding-top: 2.3cm; }
 
 .navbar-state-2 .navbar-fixed-top {
+  min-height: 2.3cm;
   max-height: 300px; }
 .navbar-state-2 .dashboard {
   padding-top: 4cm; }

@@ -65,6 +65,7 @@ nav, .navbar{
     //no metrics
     .navbar-fixed-top{
         @extend .gradient-bg;
+        min-height: $main-button-size + (2 * $main-button-offset);
         max-height: 300px;
     }
 
