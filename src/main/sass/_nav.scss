@@ -13,7 +13,8 @@ nav, .navbar{
     @extend .sizeTransition;
 }
 .gradient-bg{
-    @include gradient-top(rgba($white, 0.5), $white);
+    background: $white;
+    //@include gradient-top(rgba($white, 0.5), $white);
 
     -webkit-box-shadow: 0px 12px 25px 0px rgba(0,0,0,0.26);
     -moz-box-shadow: 0px 12px 25px 0px rgba(0,0,0,0.26);

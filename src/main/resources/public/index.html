@@ -46,11 +46,13 @@
 
 			<div class="row">
 
-	            <div class="col-xl-12" id="nav-tools" ng-show="navState>1">
+	            <div class="col-xl-12" id="nav-tools" ng-show="navState>1 && !exportMode">
+                    <!-- chart -->
 	                <div class="padding-small" style="z-index:300" ng-show="oneGramms && oneGramms.length>1">
 	                    <bar-chart data="oneGramms"></bar-chart>
 	                </div>
 
+                    <!-- slider -->
 	                <div class="padding-small" ng-show="oneGramms && oneGramms.length>1">
 	                    <rzslider
 	                        rz-slider-model="ranges.min"
@@ -63,9 +65,9 @@
 	            <!-- METRICS -->
 	            <div  class="col-xl-12 padding-small" ng-show="navState > 2" loading="statsLoading" error="{{statsLoadingError}}">
 	                <div class="row">
-	                    <b     class="col-xl-12 col-lg-4 col-md-2 key-value-pair" key="{{msg['metrics.mean']}}"     value="{{textMetrics.mean|number:3}}"></b>
- 	                    <small class="col-xl-12 col-lg-4 col-md-3 key-value-pair" key="{{msg['metrics.count']}}"    value="{{textMetrics.count|bigNumber}}"></small>
-	                    <small class="col-xl-12 col-lg-4 col-md-5 key-value-pair" key="{{msg['metrics.countAll']}}" value="{{textMetrics.countAll|bigNumber}}"></small>
+	                    <b     class="col-xs-6 col-md-2 key-value-pair" key="{{msg['metrics.mean']}}"     value="{{textMetrics.mean|number:3}}"></b>
+ 	                    <small class="col-xs-6 col-md-3 key-value-pair" key="{{msg['metrics.count']}}"    value="{{textMetrics.count|bigNumber}}"></small>
+	                    <small class="col-xs-6 col-md-5 key-value-pair" key="{{msg['metrics.countAll']}}" value="{{textMetrics.countAll|bigNumber}}"></small>
 	                </div>
 
 
@@ -77,7 +79,7 @@
         <main class="container-fluid dashboard">
 
 
-            <section class="text-block-main" ng-cloak>
+            <section class="text-block-main" ng-cloak ng-if="!exportMode">
 
 
                 <div class="paragraph" ng-repeat="para in paragraphs" style="{{tec.paragraphsStyle(para)}}">
@@ -121,10 +123,15 @@
                 </div>
 
             </section>
+
+            <section ng-if="exportMode" class="keep-line-br">
+                {{exportedText}}
+            </section>
 	<hr>
             <section class="padding-small">
-                <button type="button" class="btn btn-secondary" ng-click="tec.clearAll(true)">Очистить всё!</button>
-                <button type="button" class="btn btn-primary">Экспортировать!</button>
+                <button ng-if="!exportMode" type="button" class="btn btn-secondary" ng-click="tec.clearAll(true)">Очистить всё!</button>
+                <button ng-if="!exportMode" type="button" class="btn btn-primary" ng-click="tec.exportText()">Экспортировать!</button>
+                <button ng-if="exportMode" type="button" class="btn btn-primary" ng-click="tec.exportText()">Редактировать!</button>
             </section>
 
         </main>

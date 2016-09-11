@@ -53,6 +53,7 @@ $p-control-width: 3rem;
     }
 
     .throbber{
+        overflow: hidden;
         color: $brand-primary;
         position: absolute;
         right: 0;

@@ -12,30 +12,6 @@ text_metrics_module.controller(
     ]);
 
 
-text_metrics_module.directive('contenteditable', function() {
-    var patt = new RegExp("(#[0-9A-Za-z]{0,})", "g");
-    return {
-        require: 'ngModel',
-        link: function(scope, elm, attrs, ctrl) {
-            // view -> model
-            elm.bind('keyup', function() {
-                scope.$apply(function() {
-                    txt = elm.html().replace(patt, "<span style='background:red'>" + "$1" + "</span>");
-                    ctrl.$setViewValue(txt);
-                });
-            });
-
-            // model -> view
-            ctrl.$render = function() {
-                elm.html(ctrl.$viewValue);
-            };
-
-            // load init value from DOM
-            ctrl.$setViewValue(elm.html());
-        }
-    };
-});
-
 
 function TextController($scope, $http, $sce, $timeout) {
     $scope.msg = messages;
@@ -57,7 +33,24 @@ function TextController($scope, $http, $sce, $timeout) {
         }
     }
 
+    this.exportText = function() {
+        if ($scope.exportMode) {
+            $scope.exportMode = false;
+            $scope.refreshSlider();
+            return;
+
+        } else {
+            $scope.exportMode = true;
+            var text = _.reduce($scope.paragraphs, function(memo, num) {
+                return memo + num.text + "\r\n ";
+            }, "");
+
+            $scope.exportedText = text;
+        }
+    }
+
     this.clearAll = function(doSubmit) {
+        $scope.exportMode = false;
         $scope.oneGramms = [];
         $scope.paragraphs = [];
 
