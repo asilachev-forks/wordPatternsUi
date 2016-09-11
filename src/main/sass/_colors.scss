@@ -1,20 +1,20 @@
 $palette-color-t: rgba(0,0,0, 0.0);
 
 
-$palette-color-green: #38b923;
-$palette-color-green-dark: #369c25;
-$palette-color-red: #fb1f1f;
+$palette-color-green: #CDDF18;
+$palette-color-green-dark: #AEBD14;
+$palette-color-red: #BA123F;
 
 //oranges
- 
+
 $palette-color-orange: #f39f0b;
- 
- 
-$palette-color-fiolet: #8a6fe5;
-$palette-color-blue: #2b70b3;
-$palette-color-blue-dark: #40557d;
-$palette-color-blue-light: #2a9ff6;
-$palette-color-blue-lighter: #a3d2e7;
+
+
+$palette-color-fiolet: #3D2D40;
+$palette-color-blue: #648DAB;
+$palette-color-blue-dark: #557791;
+$palette-color-blue-light: #7B9EB7;
+$palette-color-blue-lighter: #7B9EB7;
 
 $black: #262a30;
 $white: #ffffff;
@@ -35,12 +35,9 @@ $selection-color: $palette-color-blue-lighter;
 $selected-color: $gray-light;
 
 
-$brand-primary:             $palette-color-blue !default;
+$brand-primary:             $palette-color-fiolet !default;
 $brand-success:             $palette-color-green !default;
 $brand-info:                $palette-color-blue-light !default;
 $brand-warning:             $palette-color-orange !default;
 $brand-danger:              $palette-color-red !default;
 $brand-inverse:             $gray-dark !default;
-
-
-  

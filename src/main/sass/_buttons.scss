@@ -1,0 +1,80 @@
+
+@import "bootstrap/scss/buttons";
+
+input[type="button"]{
+   outline:none;
+}
+
+.btn-red{
+    color: $white!important;
+    background: $palette-color-red;
+}
+
+.btn-brand{
+    color: $white!important;
+    background: $brand-primary;
+}
+
+
+
+.btn-circle {
+    width: 30px;
+    height: 30px;
+    text-align: center;
+    padding: 6px 0;
+    font-size: 12px;
+    line-height: 1.428571429;
+    border-radius: 15px;
+    border-color: transparent;
+    outline:none;
+
+    box-shadow: 0cm 0.2cm 0.2cm 0cm $shadow-color;
+    color: $brand-primary;
+
+    &:focus {
+      outline-color: transparent;
+      outline-style: none;
+      outline: none;
+    }
+}
+
+.btn-circle.btn-xl {
+    width: 70px;
+    height: 70px;
+    padding: 10px 16px;
+    font-size: 24px;
+    line-height: 1.33;
+    border-radius: 35px;
+
+    box-shadow: 0cm 0.4cm 0.4cm 0cm $shadow-color;
+    color: $brand-primary;
+}
+
+.btn-circle.btn-lg {
+    width: $main-button-size;
+    height: $main-button-size;
+    padding: $main-button-size/5 $main-button-size/3;
+    font-size: $main-button-size/3;
+    line-height: 1.33;
+    border-radius: $main-button-size/2;
+
+    box-shadow: 0cm 0.4cm 0.4cm 0cm $shadow-color;
+    color: $brand-primary;
+}
+
+.rzslider {
+    .rz-pointer{
+        background-color: $brand-primary!important;
+
+        &:focus {
+          outline-color: transparent;
+          outline-style: none;
+          outline: none;
+        }
+
+    }
+
+    .rz-bar.rz-selection{
+        background-color: $palette-color-red!important;
+    }
+}

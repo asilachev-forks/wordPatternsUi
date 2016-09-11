@@ -1,15 +1,14 @@
-@import url(https://fonts.googleapis.com/css?family=Source+Sans+Pro:400,100,300,700);
+@import "variables";
+
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,100,300,700);
 @import url(https://fonts.googleapis.com/css?family=Montserrat:400,700);
 
 $fa-font-path: "/assets/vendor/components-font-awesome/fonts" !default;
-//@import "font-awesome/scss/font-awesome";
- 
-//// Core variables and mixins
-@import "variables";
-@import "commons";
-@import "chart";
- 
+@import "font-awesome/scss/font-awesome";
 @import "bootstrap/scss/mixins";
+
+
+
 //
 //// Reset and dependencies
 @import "bootstrap/scss/normalize";
@@ -21,7 +20,7 @@ $fa-font-path: "/assets/vendor/components-font-awesome/fonts" !default;
 //@import "bootstrap/scss/images";
 @import "bootstrap/scss/grid";
 @import "bootstrap/scss/forms";
-@import "bootstrap/scss/buttons";
+
 
 // // Components
 //@import "bootstrap/scss/animation";
@@ -42,12 +41,20 @@ $fa-font-path: "/assets/vendor/components-font-awesome/fonts" !default;
 //@import "bootstrap/scss/tooltip";
 
 // Utility classes
-@import "bootstrap/scss/utilities";  
- 
+@import "bootstrap/scss/utilities";
 
+
+
+
+
+@import "commons";
+@import "buttons";
+@import "nav";
+@import "chart";
+@import "textarea";
 
 $sidebar-width:5.5cm;
- 
+
 #wrapper.toggled {
     padding-left: $sidebar-width;
 }
@@ -65,7 +72,7 @@ $sidebar-width:5.5cm;
     margin-left: -$sidebar-width;
     overflow-y: auto;
     background: $gray-dark;
-    
+
     @extend .sizeTransition;
 }
 
@@ -101,8 +108,8 @@ $sidebar-width:5.5cm;
     }
 }
 
- 
-   
+
+
 footer.container, footer .container, header.container{
     padding: 0;
 }
@@ -129,7 +136,7 @@ h3{
 
 body{
     @extend .sans;
-    background: $gray-lighter;
+    background: $white;
 }
 
 .container, .container-fluid{
@@ -138,9 +145,9 @@ body{
 
 .container-fluid{
     @include media-breakpoint-down(md) {
-        padding-left:  $spacer/8;
-        padding-right: $spacer/8;
-    }  
+        padding-left:  0;
+        padding-right: 0;
+    }
 }
 
 
@@ -149,16 +156,13 @@ footer{
         background: $gray!important;
     }
 }
-.navbar{
-    font-weight: 300;
-}
 
- 
+
 h1{
     font-weight: 200;
     font-size:  $font-size-h1;
     padding: $spacer;
-    
+
     small{
         display: block;
         line-height: 1.2;
@@ -171,23 +175,23 @@ h1{
 
 .key-value-pair{
     background:  $panel-bg;
-    border-bottom: 1px solid $shadow-color;
+    //border-bottom: 1px solid $shadow-color;
     position: relative;
-    
+
     &:last-of-type {
-        border-bottom: 1px solid transparent;
+        //border-bottom: 1px solid transparent;
     }
-    
+
     .key {
-        overflow: hidden;   
+        overflow: hidden;
         padding-left: 0;
     }
-    
+
     .value {
         position: absolute;
         right: 0;
         top: 0;
-        //overflow: hidden;   
+        //overflow: hidden;
         padding-right: 0;
         z-index: 200;
         &:before{
@@ -207,9 +211,9 @@ h1{
             bottom:0;
             z-index:-100;
         }
-        
+
     }
-    
+
     padding: $spacer/6;
 }
 
@@ -220,12 +224,12 @@ h1{
 
 .panel, .card.panelish{
     background: $panel-bg;
-    border-radius: 0;    
+    border-radius: 0;
     border-radius: 0;
 }
 
 section{
-    //padding-bottom: $spacer/2;        
+    //padding-bottom: $spacer/2;
 }
 
 main{
@@ -235,18 +239,19 @@ main{
 main.container{
     background-color: $panel-bg;
     padding: $spacer;
-    
+
     h1{
         padding-left: 0;
         padding-right: 0;
     }
- 
+
 }
 
 main.container.dashboard{
     background-color: $white;
     padding: 0;
-    
+    padding-top: 4cm;
+
     h1{
         padding-left:  $spacer;
         padding-right:  $spacer;
@@ -260,13 +265,13 @@ main.container.dashboard{
 }
 
 .dashboard{
-       
-    .panel, .card.panelish{        
+
+    .panel, .card.panelish{
         small{
-            font-weight: 200;            
+            font-weight: 200;
             display: block;
         }
-      
+
     }
 }
 
@@ -284,26 +289,26 @@ $panel-body-padding: $spacer/2;
 }
 
 .panel-body{
-    padding: $panel-body-padding;  
-    
+    padding: $panel-body-padding;
+
     //
- 
+
     footer{
         padding-top: $panel-body-padding;
         border-top: 1px solid $shadow-color;
         text-align: center;
-        
+
         text-transform: uppercase;
-        
+
         position: absolute;
         bottom: $panel-body-padding;
         left: $panel-body-padding;
         right: $panel-body-padding;
-    } 
+    }
 }
 .panel-body, .modal-body{
     border-radius: 0;
-        
+
     .error{
         margin: 0;
         margin-bottom: $spacer;
@@ -313,7 +318,7 @@ $panel-body-padding: $spacer/2;
 .row.full{
     margin-left: -$padding-base;
     margin-right: -$padding-base;
-    
+
     div.col{
         &:first-of-type{
             padding-left: $padding-base;
@@ -339,76 +344,77 @@ $panel-body-padding: $spacer/2;
     text-align: left;
     @extend .sans-thin
 }
-     
+
 
 .selectable{
-    cursor: pointer;  
-    
+    cursor: pointer;
+
     &:hover{
-        background-color: $table-bg-hover; 
+        background-color: $table-bg-hover;
         @extend .colorTransition;
     }
 }
- 
 
 
-.selected{    
-    @extend .colorTransition;    
+.selected{
+    @extend .colorTransition;
 
     &:hover{
         background: $gray-lightest;
         border-bottom-color: transparent;
         @extend .colorTransition;
     }
-    
+
     .network-logo{
         @extend .sizeTransition;
     }
-    
+
     hr{
         border-top-width: $padding-small / 2;
         border-top-color: $gray-light;
         margin-left: -($padding-base - $padding-small);
         margin-right: -($padding-base - $padding-small);
     }
-    
+
 }
- 
+
 
 section.dashboard-widget{
     .full-width{
         margin-left: -$spacer;
-        margin-right: -$spacer;    
+        margin-right: -$spacer;
     }
 }
 
 div.dashboard-widget{
     .full-width{
         margin-left: -$spacer / 2;
-        margin-right: -$spacer /2;    
+        margin-right: -$spacer /2;
     }
 }
- 
+
 
 
 .dashboard-widget{
     background: none;
-    padding-left: $spacer/2;
-    padding-right: $spacer/2;
+    padding-left: $spacer/4;
+    padding-right: $spacer/4;
     padding-bottom: $spacer/4;
     padding-top: $spacer/4;
-    @extend .panel; 
-    
+
+    @extend .panel;
+
     @include media-breakpoint-down(md) {
-        padding-left:  $spacer/8;
-        padding-right: $spacer/8;
+        padding-left:  0;
+        padding-right: 0;
+        border: none;
     }
-    
+
     .panel{
         border: 1px solid $shadow-color;
         border-radius: $panel-border-radius;
-        
-        padding: 0; 
+
+        padding: 0;
         margin: 0;
         background: $panel-bg;
         height: 100%;
@@ -437,21 +443,7 @@ div.dashboard-widget{
 .panel{
     position: relative;
 }
- 
-  
 
-
-.clip-contents{
-    overflow: hidden;    
-}
-
-
-.smart-btn{
-    @extend .btn;
-    font-size: $font-size-sm;
-//    
-//    @include media-breakpoint-down(md) {
-//        
-//    }
-    
+.rotated{
+    @extend .fa-rotate-180;
 }

@@ -1,7 +1,7 @@
 
 @import "colors";
 @import "variables";
-    
+
 $default-padding:$spacer;
 
 $half-padding:$default-padding/2;
@@ -10,14 +10,21 @@ $padding-base:$spacer;
 $padding-half:$padding-base/2;
 $padding-small:$padding-base/4;
 $padding-double:$padding-base * 2;
- 
+
 
 $panel-border-top:$padding-small/2;
 
 $panel-border-radius:$spacer/10;
 
+.no-padding{
+    padding: 0;
+}
+
+.padding-small{
+    padding: $padding-small;
+}
 .sans{
-    font-family: "Source Sans Pro", sans-serif;
+    font-family: "Roboto", "Source Sans Pro", sans-serif;
 }
 
 .montserrat{
@@ -30,7 +37,7 @@ $panel-border-radius:$spacer/10;
 }
 
 
-$mediumDuration: .4s;
+$mediumDuration: .7s;
 .colorTransition{
      -webkit-transition-duration: $mediumDuration;
              transition-duration: $mediumDuration;
@@ -39,17 +46,37 @@ $mediumDuration: .4s;
 }
 
 .sizeTransition{
-     -webkit-transition-duration: $mediumDuration;
-             transition-duration: $mediumDuration;
-     -webkit-transition-property: font-size, border-width;
-             transition-property: font-size, border-width;
+    -moz-transition-duration: $mediumDuration;
+    -webkit-transition-duration: $mediumDuration;
+            transition-duration: $mediumDuration;
+    -moz-transition-property: font-size, border-width, height, max-height, top;
+    -webkit-transition-property: font-size, border-width, height, max-height, top;
+            transition-property: font-size, border-width, height, max-height, top;
 }
 
-@mixin gradient-left($from-color, $to-color) { 
-    background-image: -webkit-linear-gradient(left, $from-color, $to-color); 
+.sizeTransitionPadding{
+    -moz-transition-duration: $mediumDuration;
+    -webkit-transition-duration: $mediumDuration;
+            transition-duration: $mediumDuration;
+    -moz-transition-property: padding;
+    -webkit-transition-property: padding;
+            transition-property: padding;
+}
+
+@mixin gradient-left($from-color, $to-color) {
+    background-image: -webkit-linear-gradient(left, $from-color, $to-color);
     background-image:    -moz-linear-gradient(left, $from-color, $to-color);
     background-image:     -ms-linear-gradient(left, $from-color, $to-color);
     background: linear-gradient(to right, $from-color 0%, $to-color 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
-    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$from-color}', EndColorStr='#{$to-color},GradientType=1')";     
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$from-color}', EndColorStr='#{$to-color},GradientType=1')";
     filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$from-color', endColorstr='$to-color',GradientType=1 ); /* IE6-9 */
+}
+
+@mixin gradient-top($from-color, $to-color) {
+    background-image: -webkit-linear-gradient(top, $from-color, $to-color);
+    background-image:    -moz-linear-gradient(top, $from-color, $to-color);
+    background-image:     -ms-linear-gradient(top, $from-color, $to-color);
+    background: linear-gradient(to bottom, $from-color 0%, $to-color 100%); /* W3C, IE10+, FF16+, Chrome26+, Opera12+, Safari7+ */
+    -ms-filter: "progid:DXImageTransform.Microsoft.gradient(startColorStr='#{$from-color}', EndColorStr='#{$to-color},GradientType=0')";
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$from-color', endColorstr='$to-color',GradientType=0 ); /* IE6-9 */
 }

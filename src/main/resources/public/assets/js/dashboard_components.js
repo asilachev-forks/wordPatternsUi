@@ -10,8 +10,20 @@
          },
          transclude: true,
          restrict: 'C',
-         templateUrl: '/partials/key_value_pair.html',
+         templateUrl: '/partials/key_value_pair2.html',
 
+     };
+ })
+
+
+ .directive('throbber', function($compile) {
+     return {
+         scope: {
+             text: '@'
+         },
+         restrict: 'E',
+         replace: true,
+         templateUrl: '/partials/throbber.html'
      };
  })
 

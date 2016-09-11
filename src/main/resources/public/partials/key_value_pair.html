@@ -8,10 +8,11 @@
 
 		<span ng-switch on="comment || '_undefined_'">
 			<div ng-switch-default class="text-xs-right key-pair-comment" title="{{comment}}">{{comment}}</div>
-		</span>
+		</span> 
 
 		<div class="value text-nowrap" title="{{value}}">
-			<span ng-if="value">{{value}}</span> <span ng-if="!value">-</span>  <ng-transclude></ng-transclude></div>
+			<span ng-if="value">{{value}}</span> <span ng-if="!value">-</span>  <ng-transclude></ng-transclude>
+		</div>
 
 	</div>
 

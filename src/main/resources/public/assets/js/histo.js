@@ -14,7 +14,6 @@ angular.module('charts.js', [])
         replace: true,
         template: '<div class="chart"></div>',
         scope: {
-            height: '=height',
             data: '=data'
         },
 
@@ -42,7 +41,7 @@ angular.module('charts.js', [])
                 d = _.map(d, function(num) {
                     return num.length;
                 });
-                
+
                 chartEl.datum(d).call(chart);
             });
 
@@ -73,8 +72,8 @@ d3.custom.barChart = function module() {
                     .append('div').attr("class", "bar-chart-az");
             };
 
-			box.selectAll("*").remove();
-			
+            box.selectAll("*").remove();
+
             var bars = box.selectAll("div")
                 .data(_data);
 

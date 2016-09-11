@@ -5,10 +5,10 @@
         <meta name="viewport" content="initial-scale=1"/>
         <meta property="article:author" content="https://www.facebook.com/zaborskiy" />
         <title>Creative writing tools: words stats</title>
-                
+
         <meta property="og:description" content="Вот инструмент, исполненный в стремлении разбавить однообразность писанины. Вписывайте в прямоугольник слова, нежно массируйте кнопочку Analyse и наблюдайте спелые лексемы" />
         <meta property="og:image" content="https://textwell.herokuapp.com/assets/img/ogimage.png" />
-        
+
 
         <!-- 3rd parties JS -->
 
@@ -16,8 +16,7 @@
         <script src="/assets/vendor/underscore/underscore-min.js"></script>
         <script src="/assets/vendor/angular/angular.min.js"></script>
         <script src="/assets/vendor/angularjs-slider/dist/rzslider.min.js"></script>
-
-		<script src="https://d3js.org/d3.v4.min.js"></script>
+        <script src="/assets/vendor/d3/build/d3.min.js"></script>
 
         <!-- app JS -->
         <script src="/assets/js/messages.js"></script>
@@ -25,7 +24,6 @@
         <script src="/assets/js/tools.js"></script>
         <script src="/assets/js/histo.js"></script>
         <script src="/assets/js/app.js"></script>
-
 
         <!-- CSS -->
         <link rel="stylesheet" href="/assets/css/az.css">
@@ -35,49 +33,103 @@
 
     <!-- END OF HEAD -->
 
-    <body >
+    <body ng-controller="textCtrl as tec" class="navbar-state-{{navState}}">
+
+
+
+        <nav class="navbar navbar-fixed-top navbar-light" >
+
+        	<div class="btn-main">
+	            <button ng-click="showHideNav()" type="button"
+	                class="btn btn-brand btn-circle btn-lg"><i class="btn-main-pic"></i></button>
+	        </div>
+
+			<div class="row">
+
+	            <div class="col-xl-12" id="nav-tools" ng-show="navState>1">
+	                <div class="padding-small" style="z-index:300" ng-if="oneGramms && oneGramms.length>1">
+	                    <bar-chart data="oneGramms"></bar-chart>
+	                </div>
+
+	                <div class="padding-small" ng-if="paragraphs.length>0">
+	                    <rzslider
+	                        rz-slider-model="ranges.min"
+	                        rz-slider-high="ranges.max"
+	                        rz-slider-options="ranges.options"></rzslider>
+	                </div>
+	            </div>
+
+
+	            <!-- METRICS -->
+	            <div  class="col-xl-12 padding-small" ng-show="navState > 2" loading="statsLoading" error="{{statsLoadingError}}">
+	                <div class="row">
+	                    <b     class="col-xl-12 col-lg-4 col-md-2 key-value-pair" key="{{msg['metrics.mean']}}"     value="{{textMetrics.mean|number:3}}"></b>
+ 	                    <small class="col-xl-12 col-lg-4 col-md-3 key-value-pair" key="{{msg['metrics.count']}}"    value="{{textMetrics.count|bigNumber}}"></small>
+	                    <small class="col-xl-12 col-lg-4 col-md-5 key-value-pair" key="{{msg['metrics.countAll']}}" value="{{textMetrics.countAll|bigNumber}}"></small>
+	                </div>
+
+
+ 	            </div><!-- /METRICS -->
+            </div>
+
+        </nav>
 
         <main class="container-fluid dashboard">
-            <div ng-cloak>
 
 
-                <section class="row" ng-controller="textCtrl as tec">
+            <section class="text-block-main" ng-cloak>
 
-                    <div class="widget-sm dashboard-widget col-md-8">
-                        <textarea rows="12" style="width:100%" ng-model="tec.mainText" placeholder="{{msg['placeholder.mainText']}}"></textarea>
+
+                <div class="paragraph" ng-repeat="para in paragraphs" style="{{tec.paragraphsStyle(para)}}">
+                    <div class="p-index">{{$index+1}}</div>
+                    <div class="p-body" ng-click="selectParagraph($index)">
+
+                        <div class="cloner" >
+                            <!-- colored words -->
+                            <p ng-if="selectedParagraph!==para && !para.changed"><span
+                                style="{{tec.textStyle(v[1])}}"
+                                ng-repeat="v in para.words">{{v[0]}}</span></p>
+
+                            <!-- just spacer to make textarea bigger -->
+                            <div class="spacer-text"
+                                ng-if="selectedParagraph===para">{{selectedParagraph.text}}<br></div>
+
+                            <div class="spacer-text"
+                                ng-if="para.loading">{{para.text}}<br></div>
+
+
+                            <throbber ng-if="para.loading" text="{{msg['throbber.colorizing']}}"></throbber>
+
+                            <textarea
+                                ng-class="[{'text-visible':selectedParagraph===para || para.changed}]"
+                                ng-change="tec.onParagraphChanged($index)"
+                                ng-focus="selectParagraph($index)"
+                                ng-blur="tec.onParagraphBlur($index)"
+                                ng-model="para.text"></textarea>
+                        </div>
+
                     </div>
 
-                    <!-- METRICS -->
-                    <div class="widget-sm dashboard-widget col-md-4" loading="statsLoading" error="{{statsLoadingError}}">
-                        <b><div class="key-value-pair" key="{{msg['metrics.mean']}}" value="{{textMetrics.mean}}"></div></b>
-                        <div class="key-value-pair" key="{{msg['metrics.min']}}" value="{{textMetrics.min}}"></div>
-                        <div class="key-value-pair" key="{{msg['metrics.max']}}" value="{{textMetrics.max}}"></div>
-                        <div class="key-value-pair" key="{{msg['metrics.count']}}" value="{{textMetrics.count}}"></div>
-
-                        <button type="button" name="button" class="btn btn-primary" ng-click="tec.submitText()">Analyse</button>
-                    </div><!-- /METRICS -->
-
-                    <div class="widget-sm dashboard-widget col-md-12" loading="statsLoading" error="{{statsLoadingError}}">
-
-                        <div>
-
-                            <bar-chart height="100" data="oneGramms.colors"></bar-chart>
-		
-                        	<rzslider
-                                rz-slider-model="ranges.min"
-                                rz-slider-high="ranges.max"
-                                rz-slider-options="ranges.options"></rzslider>
-                        </div>
-						<br><br>
-
-	                    <div id="text-editor-2" class="editable2">
-                        	<span ng-repeat="v in coloredText" style="{{tec.textStyle(v[1])}}">{{v[0]}}</span>
-                        </div>
+                    <div class="p-controls" ng-if="$index>0">
+                        <button
+                        	ng-if="!para.loading && !para.changed && !paragraphs[$index-1].loading && !paragraphs[$index-1].changed"
+                        	ng-click="tec.onParagraphMerge($index)"
+                        	type="button"
+                        	class="btn btn-secondary btn-circle"><i class="fa fa-plus"></i></button>
                     </div>
-                </section>
 
-            </div>
+                </div>
+
+            </section>
+	<hr>
+            <section class="padding-small" style="padding-top:1cm">
+                <button type="button" class="btn btn-secondary" ng-click="tec.clearAll(true)">Очистить всё!</button>
+                <button type="button" class="btn btn-primary">Экспортировать!</button>
+            </section>
+
         </main>
+
+
         <!-- <script>var editor = new MediumEditor('.editable');</script>
         <script>var editor2 = new MediumEditor('.editable2');</script> -->
     </body>

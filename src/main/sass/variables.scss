@@ -1,3 +1,6 @@
+$main-button-size: 1.3cm;
+$main-button-offset: 0.5cm;
+
 // BOOTSTRAP
 
 @import "colors";
@@ -477,9 +480,9 @@ $zindex-modal:             1050 !default;
 // Navbar
 
 $navbar-border-radius:              $border-radius !default;
-$navbar-padding-x:                  $spacer !default;
-$navbar-padding-y:                  ($spacer / 2) !default;
-$navbar-brand-padding-y:            .25rem !default;
+$navbar-padding-x:                  0 !default;
+$navbar-padding-y:                  0 !default;
+$navbar-brand-padding-y:            0 !default;
 
 $navbar-dark-color:                 rgba(255,255,255,.5) !default;
 $navbar-dark-hover-color:           rgba(255,255,255,.75) !default;

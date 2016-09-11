@@ -1,0 +1,119 @@
+@import "variables";
+@import "commons";
+
+.text-block-main{
+    padding: 0!important;
+    margin: 0!important;
+    background: $white;
+}
+
+.keep-line-br{
+    white-space:pre-wrap;
+    word-wrap:break-word;
+
+    -webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+    -moz-box-sizing: border-box;    /* Firefox, other Gecko */
+    box-sizing: border-box;
+}
+
+$index-width: 2rem;
+$p-control-width: 3rem;
+
+.paragraph{
+    position: relative;
+    z-index: 20;
+    padding: 0;
+    min-height: 3rem;
+
+    .p-index{
+        padding: $spacer/8;
+        font-size: 8px;
+        color: $gray-light;
+        float: left;
+        position: absolute;
+        left: 0;
+        top: 0;
+        width: $index-width;
+        text-align: right;
+    }
+
+    .p-controls{
+        padding: $spacer/8;
+        width: $p-control-width;
+        position: absolute;
+        right: 0;
+        top: 0;
+    }
+
+    .p-body{
+        margin-left: $index-width;
+        margin-right: $p-control-width;
+        position: relative;
+
+    }
+
+    .throbber{
+        color: $brand-primary;
+        position: absolute;
+        right: 0;
+        top: 0;
+        bottom: 0;
+        left:0;
+        padding: $spacer/8;
+        //background: red;
+        text-align: center;
+        z-index: 1000;
+        background: rgba($gray-lighter, 0.9);
+    }
+}
+
+
+.cloner{
+    z-index: 50;
+    position: relative;
+    width: 100%;
+    left: 0;
+    top:0;
+
+    .text-invisible{
+    }
+
+    .text-visible{
+        color: $black;
+    }
+
+    .spacer-text, textarea, p{
+        width: 100%;
+        border: none;
+        padding: $spacer/8;
+        margin: 0;
+        @extend .keep-line-br;
+        @extend .sans;
+        font-size: $font-size-base;
+        border: 1px solid transparent;
+    }
+
+    .spacer-text{
+        display: block;
+        z-index: 100;
+        color: transparent;
+    }
+
+    textarea{
+        color: transparent;
+        background: transparent;
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        height: 100%;
+        min-height: 100%;
+
+        z-index: 150;
+        resize: none;
+
+        &:hover{
+            border: 1px solid $shadow-color;
+        }
+    }
+}

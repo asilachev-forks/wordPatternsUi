@@ -1,0 +1,103 @@
+@import "variables";
+@import "commons";
+
+nav, .navbar{
+    // background: $white;
+}
+.navbar-fixed-top{
+    padding-top: 0!important;
+    padding-left: 0!important;
+    padding-bottom: 0!important;
+    padding-right: $main-button-size + (2 * $main-button-offset);
+    background:    $gray-lighter;
+    @extend .sizeTransition;
+}
+.gradient-bg{
+    @include gradient-top(rgba($white, 0.5), $white);
+
+    -webkit-box-shadow: 0px 12px 25px 0px rgba(0,0,0,0.26);
+    -moz-box-shadow: 0px 12px 25px 0px rgba(0,0,0,0.26);
+    box-shadow: 0px 12px 25px 0px rgba(0,0,0,0.26);
+}
+
+.btn-main{
+    //position: fixed;
+    right:$main-button-offset;
+    // top: $main-button-offset;
+    position: absolute;
+    bottom: $main-button-offset;
+    z-index:99999;
+
+    @extend .sizeTransition;
+}
+.btn-main-pic{
+    @extend .fa;
+}
+.dashboard{
+    @extend .sizeTransitionPadding;
+}
+
+//------------
+////////states
+//------------
+
+.navbar-state-1{
+    //hidden
+    .navbar-fixed-top{
+        background: transparent;
+        //max-height: 0;
+        // top: -200px;
+        max-height: $main-button-size + (2 * $main-button-offset);
+        min-height: $main-button-size + (2 * $main-button-offset);
+    }
+    // .btn-main{
+    //     top: $main-button-offset;
+    // }
+    .btn-main-pic{
+        @extend .fa-angle-down;
+    }
+    .dashboard{
+        padding-top: $main-button-size + (2 * $main-button-offset);
+    }
+}
+
+.navbar-state-2{
+    //no metrics
+    .navbar-fixed-top{
+        @extend .gradient-bg;
+        max-height: 300px;
+    }
+
+    .dashboard{
+        padding-top: $spacer*4;
+    }
+
+    // .btn-main{
+    //     top: $main-button-offset;
+    // }
+    .btn-main-pic{
+        @extend .fa-angle-down;
+    }
+}
+
+.navbar-state-3{
+    //fully opened
+    .navbar-fixed-top{
+        @extend .gradient-bg;
+        max-height: 500px;
+    }
+    .dashboard{
+        padding-top: $spacer*8;
+    }
+    // .btn-main{
+    //     top: 0.5cm;
+    // }
+
+    .btn-main-pic{
+        @extend .fa-angle-up;
+    }
+}
+
+.bg-faded{
+    background: transparent;
+}
