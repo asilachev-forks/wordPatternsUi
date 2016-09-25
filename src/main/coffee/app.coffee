@@ -12,7 +12,7 @@ TextController = ($scope, $http, $sce, $timeout) ->
             $scope.navState = 1
 
         if $scope.navState > 1
-            @refreshSlider()
+            $scope.refreshSlider()
 
         return
 

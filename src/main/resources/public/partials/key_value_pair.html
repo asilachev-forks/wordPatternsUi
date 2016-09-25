@@ -1,19 +1,9 @@
 <div class="row">
-	<div class="key col-xs-12 text-xs-left ">
-
-		<span ng-switch on="href || '_undefined_'">
-			<a ng-switch-default href="{{href}}" title="{{key}}" target="_blanc">{{key}}</a>
-			<span ng-switch-when="_undefined_" title="{{key}}">{{key}}</span>
-		</span>
-
-		<span ng-switch on="comment || '_undefined_'">
-			<div ng-switch-default class="text-xs-right key-pair-comment" title="{{comment}}">{{comment}}</div>
-		</span> 
-
-		<div class="value text-nowrap" title="{{value}}">
-			<span ng-if="value">{{value}}</span> <span ng-if="!value">-</span>  <ng-transclude></ng-transclude>
-		</div>
-
+	<div class="key col-xs-8 col-md-12 text-xs-left ">
+		{{key}}
+	</div>
+	<div class="key col-xs-4 col-md-12 text-xs-left ">
+		{{value}}
 	</div>
 
 </div>

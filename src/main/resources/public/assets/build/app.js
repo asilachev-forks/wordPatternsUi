@@ -12,7 +12,7 @@ TextController = function($scope, $http, $sce, $timeout) {
       $scope.navState = 1;
     }
     if ($scope.navState > 1) {
-      this.refreshSlider();
+      $scope.refreshSlider();
     }
   };
   $scope.onThresholds = function() {

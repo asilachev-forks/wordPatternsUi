@@ -1,6 +1,6 @@
- angular.module('dashboard_components.js', [])
+ dshc = angular.module('dashboard_components.js', []);
 
- .directive('keyValuePair', function($compile) {
+ dshc.directive('keyValuePair', function($compile) {
      return {
          scope: {
              key: '@',
