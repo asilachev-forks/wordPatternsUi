@@ -75,16 +75,31 @@ module.exports = function(grunt) {
             all: ['Gruntfile.js', 'src/main/resources/public/assets/js/*.js']
         },
 
+        coffee: {
+            compile: {
+                options: {
+                    bare: true
+                },
+                expand: true,
+                flatten: true,
+                bare: true,
+                cwd: 'src/main/coffee',
+                src: ['*.coffee'],
+                dest: 'src/main/resources/public/assets/build/',
+                ext: '.js'
+            }
+        },
 
         watch: {
-            js: {
+
+            coffee: {
                 files: [
-                    'src/main/resources/public/assets/js/*.js',
-                    'Gruntfile.js'
+                    'src/main/coffee/*.coffee'
                 ],
-                tasks: ['jshint']
+                tasks: ['coffee:compile']
             }
         }
+
     });
 
 
@@ -108,6 +123,7 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('default', ['clean', 'createVendorDir', 'copy']);
+    grunt.loadNpmTasks('grunt-contrib-coffee');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');

@@ -13,6 +13,7 @@
         <!-- 3rd parties JS -->
 
         <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
+        <script src="/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="/assets/vendor/underscore/underscore-min.js"></script>
         <script src="/assets/vendor/angular/angular.min.js"></script>
         <script src="/assets/vendor/angularjs-slider/dist/rzslider.min.js"></script>
@@ -20,10 +21,12 @@
 
         <!-- app JS -->
         <script src="/assets/js/messages.js"></script>
-        <script src="/assets/js/dashboard_components.js"></script>
-        <script src="/assets/js/tools.js"></script>
+        <script src="/assets/js/dashboard_components.js"></script>        
         <script src="/assets/js/histo.js"></script>
-        <script src="/assets/js/app.js"></script>
+
+        <script src="/assets/build/tools.js"></script>
+        <script src="/assets/build/text.js"></script>
+        <script src="/assets/build/app.js"></script>
 
         <!-- CSS -->
         <link rel="stylesheet" href="/assets/css/az.css">
@@ -36,11 +39,10 @@
     <body ng-controller="textCtrl as tec" class="navbar-state-{{navState}}">
 
 
-
         <nav class="navbar navbar-fixed-top navbar-light" >
 
         	<div class="btn-main">
-	            <button ng-click="showHideNav()" type="button"
+	            <button ng-click="tec.showHideNav()" type="button"
 	                class="btn btn-brand btn-circle btn-lg"><i class="btn-main-pic"></i></button>
 	        </div>
 
@@ -48,16 +50,16 @@
 
 	            <div class="col-xl-12" id="nav-tools" ng-show="navState>1 && !exportMode">
                     <!-- chart -->
-	                <div class="padding-small" style="z-index:300" ng-show="oneGramms && oneGramms.length>1">
-	                    <bar-chart data="oneGramms"></bar-chart>
+	                <div class="padding-small" style="z-index:300" ng-show="text.oneGramms && text.oneGramms.length>1">
+	                    <bar-chart data="text.oneGramms"></bar-chart>
 	                </div>
 
                     <!-- slider -->
-	                <div class="padding-small" ng-show="oneGramms && oneGramms.length>1">
+	                <div class="padding-small" ng-show="text.oneGramms && text.oneGramms.length>1">
 	                    <rzslider
-	                        rz-slider-model="ranges.min"
-	                        rz-slider-high="ranges.max"
-	                        rz-slider-options="ranges.options"></rzslider>
+	                        rz-slider-model="text.ranges.min"
+	                        rz-slider-high="text.ranges.max"
+	                        rz-slider-options="text.ranges.options"></rzslider>
 	                </div>
 	            </div>
 
@@ -65,13 +67,25 @@
 	            <!-- METRICS -->
 	            <div  class="col-xl-12 padding-small" ng-show="navState > 2" loading="statsLoading" error="{{statsLoadingError}}">
 	                <div class="row">
-	                    <b     class="col-xs-12 col-sm-6 col-md-2 key-value-pair" key="{{msg['metrics.mean']}}"     value="{{textMetrics.mean|number:3}}"></b>
- 	                    <small class="col-xs-12 col-sm-6 col-md-3 key-value-pair" key="{{msg['metrics.count']}}"    value="{{textMetrics.count|bigNumber}}"></small>
-	                    <small class="col-xs-12 col-sm-6 col-md-5 key-value-pair" key="{{msg['metrics.countAll']}}" value="{{textMetrics.countAll|bigNumber}}"></small>
+	                    <b     class="col-xs-12 col-sm-6 col-md-2 key-value-pair" key="{{msg['metrics.mean']}}"     value="{{text.metrics.mean|number:3}}"></b>
+ 	                    <small class="col-xs-12 col-sm-6 col-md-3 key-value-pair" key="{{msg['metrics.count']}}"    value="{{text.metrics.count|bigNumber}}"></small>
+	                    <small class="col-xs-12 col-sm-6 col-md-5 key-value-pair" key="{{msg['metrics.countAll']}}" value="{{text.metrics.countAll|bigNumber}}"></small>
 	                </div>
-
-
  	            </div><!-- /METRICS -->
+
+
+                <div class="dropdown">
+                    <button class="btn dropdown-toggle btn-secondary"
+                         type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        {{selectedApi.name}}
+                    </button>
+
+                    <div class="dropdown-menu">
+                        <span class="dropdown-item" ng-repeat="item in apis" ng-click="tec.selectApi(item)">{{item.name}}</span>
+                    </div>
+                </div>
+
+
             </div>
 
         </nav>
@@ -82,19 +96,19 @@
             <section class="text-block-main" ng-cloak ng-if="!exportMode">
 
 
-                <div class="paragraph" ng-repeat="para in paragraphs" style="{{tec.paragraphsStyle(para)}}">
+                <div class="paragraph" ng-repeat="para in text.paragraphs" style="{{text.paragraphsStyle(para)}}">
                     <div class="p-index">{{$index+1}}</div>
                     <div class="p-body" ng-click="selectParagraph($index)">
 
                         <div class="cloner" >
                             <!-- colored words -->
-                            <p ng-if="selectedParagraph!==para && !para.changed"><span
-                                style="{{tec.textStyle(v[1])}}"
+                            <p ng-if="text.selectedParagraph!==para && !para.changed"><span
+                                style="{{text.textStyle(v[1])}}"
                                 ng-repeat="v in para.words">{{v[0]}}</span></p>
 
                             <!-- just spacer to make textarea bigger -->
                             <div class="spacer-text"
-                                ng-if="selectedParagraph===para">{{selectedParagraph.text}}<br></div>
+                                ng-if="text.selectedParagraph===para">{{text.selectedParagraph.text}}<br></div>
 
                             <div class="spacer-text"
                                 ng-if="para.loading">{{para.text}}<br></div>
@@ -103,9 +117,9 @@
                             <throbber ng-if="para.loading" text="{{msg['throbber.colorizing']}}"></throbber>
 
                             <textarea
-                                ng-class="[{'text-visible':selectedParagraph===para || para.changed}]"
+                                ng-class="[{'text-visible':text.selectedParagraph===para || para.changed}]"
                                 ng-change="tec.onParagraphChanged($index)"
-                                ng-focus="selectParagraph($index)"
+                                ng-focus="text.selectParagraph($index)"
                                 ng-blur="tec.onParagraphBlur($index)"
                                 ng-model="para.text"></textarea>
                         </div>
@@ -114,7 +128,7 @@
 
                     <div class="p-controls" ng-if="$index>0">
                         <button
-                        	ng-if="!para.loading && !para.changed && !paragraphs[$index-1].loading && !paragraphs[$index-1].changed"
+                        	ng-if="!para.loading && !para.changed && !text.paragraphs[$index-1].loading && !text.paragraphs[$index-1].changed"
                         	ng-click="tec.onParagraphMerge($index)"
                         	type="button"
                         	class="btn btn-secondary btn-circle"><i class="fa fa-plus"></i></button>
