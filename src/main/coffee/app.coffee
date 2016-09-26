@@ -6,7 +6,7 @@ text_metrics_module = angular.module('text_metrics.js', [])
 TextController = ($scope, $http, $sce, $timeout) ->
     $scope.navState = 2; #half-opened by default
 
-    @showHideNav = () ->
+    @showHideNav = ->
         $scope.navState++
         if $scope.navState > 3
             $scope.navState = 1
@@ -17,12 +17,12 @@ TextController = ($scope, $http, $sce, $timeout) ->
         return
 
 
-    $scope.onThresholds = () -> $scope.text.onThresholds()
+    $scope.onThresholds = -> $scope.text.onThresholds()
 
-    $scope.ranges = {
+    $scope.ranges =
         min: 50
         max: 190
-        options: {
+        options:
             floor: 0
             ceil: 255
             step: 0.1
@@ -31,8 +31,7 @@ TextController = ($scope, $http, $sce, $timeout) ->
             hideLimitLabels: true
 
             onChange: $scope.onThresholds
-        }
-    }
+
 
 
     $scope.text = new Paragraphs($scope.ranges)
@@ -79,19 +78,19 @@ TextController = ($scope, $http, $sce, $timeout) ->
             @submitText(0);
 
 
-    @onParagraphChanged =  (index) ->
+    @onParagraphChanged = (index) ->
         if $scope.text.paragraphs[index]
             $scope.text.paragraphs[index].changed = true
 
         console.log("changed:" + index)
 
 
-    @onParagraphMerge =  (index) ->
+    @onParagraphMerge = (index) ->
         $scope.text.merge(index)
         @submitText(index - 1)
 
 
-    @onParagraphBlur =  (index) ->
+    @onParagraphBlur = (index) ->
         console.log("blured:" + index)
         p = $scope.text.paragraphs[index]
         if p? && p.changed
@@ -105,7 +104,7 @@ TextController = ($scope, $http, $sce, $timeout) ->
 
     $scope.refreshSlider = -> $timeout -> $scope.$broadcast('rzSliderForceRender')
 
-    @submitText =  (paragraphIndex) ->
+    @submitText = (paragraphIndex) ->
         $timeout( ->
             $scope.statsLoading++
             $scope.statsLoadingError = null
@@ -118,15 +117,15 @@ TextController = ($scope, $http, $sce, $timeout) ->
                 text = ' '
 
             $http.post(API_URL + $scope.selectedApi.value, text).then(
-                    (r) ->
-                        $scope.statsLoading--
-                        $scope.onParagraphsLoaded(r.data, paragraphIndex)
-                        return
-                    (r) ->
-                        console.log r
-                        $scope.statsLoadingError = getResponseError(r)
-                        $scope.statsLoading--
-                        return
+                (r) ->
+                    $scope.statsLoading--
+                    $scope.onParagraphsLoaded(r.data, paragraphIndex)
+                    return
+                (r) ->
+                    console.log r
+                    $scope.statsLoadingError = getResponseError(r)
+                    $scope.statsLoading--
+                    return
             )
         50)
         return
@@ -135,8 +134,8 @@ TextController = ($scope, $http, $sce, $timeout) ->
 
     @clearAll(false)
     $scope.text.setText(0, $scope.msg['placeholder.mainText'])
-
     @submitText(0)
+
     return
 
 

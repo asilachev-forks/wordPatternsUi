@@ -7,7 +7,6 @@ class Paragraph
     text: "Пишите сюда"
 
 
-
 class Paragraphs
     paragraphs=[]
     oneGramms=[]
@@ -15,19 +14,19 @@ class Paragraphs
     constructor:(ranges)->
         @ranges = ranges
 
-        @metrics ={
+        @metrics =
             min: 0
             max: 255
             l_min: 0
             l_max: 255
-        }
 
-    export: ()->
+
+    export: ->
         _.reduce(@paragraphs, ((memo, num) ->
             memo + num.text + '\n'
         ), '').trim()
 
-    collapse: () ->
+    collapse: ->
         fulltext = @export()
         @paragraphs = []
         @setText 0,fulltext
@@ -38,15 +37,15 @@ class Paragraphs
     setText:(index, str)->
         if !@paragraphs[index]
             @paragraphs[index]=new Paragraph()
+
         @paragraphs[index].text=str
         return
 
-    clear: () ->
+    clear: ->
         @paragraphs = []
         @paragraphs.push(new Paragraph())
         @paragraphMetrics()
         return
-
 
     paragraphsStyle: (paragraph) ->
         if not paragraph
@@ -59,7 +58,7 @@ class Paragraphs
         'border-left: 5px solid rgb(255,' + vval + ',' + vval + ');'
 
     textStyle: (val) ->
-        if !val
+        if not val
             return ''
 
         if val >= @ranges.min and val <= @ranges.max
@@ -70,24 +69,23 @@ class Paragraphs
         else
             'color:#999999'
 
-    markDirty:() ->
+    markDirty: ->
         p.changed = true for p in @paragraphs
         return
 
-    paragraphMetrics:() ->
+    paragraphMetrics: ->
         sum = 0
         cnt = 0
         @oneGramms = []
 
         for p in @paragraphs
-            j = 0
-            while j < p.words.length
+            for word in p.words
                 cnt++
-                clr = p.words[j][1]
+                clr = word[1]
                 if clr > 0
                     sum += clr
                     @oneGramms.push clr
-                j++
+
 
         @metrics.mean = sum / (if @oneGramms.length == 0 then 1 else @oneGramms.length)
         @metrics.count = @oneGramms.length
@@ -110,7 +108,7 @@ class Paragraphs
                 changed: false
                 words: _.zip(p.tokens, p.colors)
                 text: _.reduce(p.tokens, ((memo, num) ->
-                  memo + num
+                    memo + num
                 ), '')
 
             @paragraphs.splice paragraphIndex + i, 0, paragraph
@@ -138,7 +136,7 @@ class Paragraphs
         return
 
 
-    onThresholds: () ->
+    onThresholds: ->
         @metrics.l_min = Math.max(@ranges.min, @metrics.min);
         @metrics.l_max = Math.min(@ranges.max, @metrics.max);
         @metrics.range = @metrics.l_max - @metrics.l_min;

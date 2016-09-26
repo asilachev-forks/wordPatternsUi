@@ -38,7 +38,7 @@ meanInRange = function(array, fmin, fmax) {
   cnt = 0;
   for (i = 0, len = array.length; i < len; i++) {
     a = array[i];
-    if (a > fmin && a < fmax) {
+    if ((fmin < a && a < fmax)) {
       sum += a;
       cnt++;
     }

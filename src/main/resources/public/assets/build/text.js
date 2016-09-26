@@ -93,31 +93,31 @@ Paragraphs = (function() {
   };
 
   Paragraphs.prototype.markDirty = function() {
-    var l, len, p, ref;
+    var j, len, p, ref;
     ref = this.paragraphs;
-    for (l = 0, len = ref.length; l < len; l++) {
-      p = ref[l];
+    for (j = 0, len = ref.length; j < len; j++) {
+      p = ref[j];
       p.changed = true;
     }
   };
 
   Paragraphs.prototype.paragraphMetrics = function() {
-    var clr, cnt, j, l, len, p, ref, sum;
+    var clr, cnt, j, l, len, len1, p, ref, ref1, sum, word;
     sum = 0;
     cnt = 0;
     this.oneGramms = [];
     ref = this.paragraphs;
-    for (l = 0, len = ref.length; l < len; l++) {
-      p = ref[l];
-      j = 0;
-      while (j < p.words.length) {
+    for (j = 0, len = ref.length; j < len; j++) {
+      p = ref[j];
+      ref1 = p.words;
+      for (l = 0, len1 = ref1.length; l < len1; l++) {
+        word = ref1[l];
         cnt++;
-        clr = p.words[j][1];
+        clr = word[1];
         if (clr > 0) {
           sum += clr;
           this.oneGramms.push(clr);
         }
-        j++;
       }
     }
     this.metrics.mean = sum / (this.oneGramms.length === 0 ? 1 : this.oneGramms.length);
@@ -128,12 +128,12 @@ Paragraphs = (function() {
   };
 
   Paragraphs.prototype.insertParagraphs = function(analyzedParagraphs, paragraphIndex) {
-    var i, l, len, p, paragraph;
+    var i, j, len, p, paragraph;
     this.paragraphs.splice(paragraphIndex, 1);
     console.log('loaded ' + analyzedParagraphs.length + ' paragraphs, start index=' + paragraphIndex);
     i = 0;
-    for (l = 0, len = analyzedParagraphs.length; l < len; l++) {
-      p = analyzedParagraphs[l];
+    for (j = 0, len = analyzedParagraphs.length; j < len; j++) {
+      p = analyzedParagraphs[j];
       paragraph = {
         loading: false,
         metrics: {

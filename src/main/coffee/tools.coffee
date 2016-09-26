@@ -26,7 +26,7 @@ meanInRange = (array, fmin, fmax) ->
     cnt = 0
 
     for a in array
-        if a > fmin and a < fmax
+        if fmin < a < fmax
             sum += a
             cnt++
 

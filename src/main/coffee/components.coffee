@@ -1,7 +1,7 @@
 dshc = angular.module('dashboard_components.js', [])
 
 
-dshc.directive 'keyValuePair',  ($compile) ->
+dshc.directive 'keyValuePair', ($compile) ->
     scope:
         key: '@'
         value: '@'
@@ -13,7 +13,7 @@ dshc.directive 'keyValuePair',  ($compile) ->
     templateUrl: '/partials/key_value_pair.html'
 
 
-dshc.directive 'throbber',  ($compile) ->
+dshc.directive 'throbber', ($compile) ->
     scope:
         text: '@'
     restrict: 'E'
