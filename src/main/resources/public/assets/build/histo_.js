@@ -1,10 +1,10 @@
-var NUMBER_OF_BINS, moduleCharts;
+var NUMBER_OF_BINS, chartsModule;
 
 NUMBER_OF_BINS = 256;
 
-moduleCharts = angular.module('charts.js', []);
+chartsModule = angular.module('charts.js', []);
 
-moduleCharts.directive('barChart', function() {
+chartsModule.directive('barChart', function() {
   var chart;
   chart = d3.custom.barChart();
   return {
@@ -17,7 +17,7 @@ moduleCharts.directive('barChart', function() {
     link: function(scope, element, attrs) {
       var chartEl;
       chartEl = d3.select(element[0]);
-      return scope.$watch('data', function(newVal, oldVal) {
+      scope.$watch('data', function(newVal, oldVal) {
         var d, histogram, noZeors, x;
         noZeors = _.filter(newVal, function(x) {
           return x > 0.00001;
@@ -32,7 +32,7 @@ moduleCharts.directive('barChart', function() {
         d = _.map(d, function(num) {
           return num.length;
         });
-        return chartEl.datum(d).call(chart);
+        chartEl.datum(d).call(chart);
       });
     }
   };
@@ -40,25 +40,26 @@ moduleCharts.directive('barChart', function() {
 
 d3.custom = {};
 
-d3.custom.barChart = module()(function() {
-  var exports;
+d3.custom.barChart = function() {
+  var box, exports;
+  box = void 0;
   exports = function(_selection) {
-    return _selection.each(function(_data) {
-      var bars, box, y1;
+    _selection.each(function(_data) {
+      var bars, y1;
       y1 = d3.scaleLinear().domain([
         0, d3.max(_data, function(d, i) {
           return d;
         })
       ]).range([0, 100]);
       if (!box) {
-        box = d3.select(this).append('div').attr("class", "bar-chart-az");
+        box = d3.select(this).append('div').attr('class', 'bar-chart-az');
       }
-      box.selectAll("*").remove();
-      bars = box.selectAll("div").data(_data);
-      return bars.enter().append('div').style("height", function(d, i) {
-        return (100 - y1(d)) + "%";
+      box.selectAll('*').remove();
+      bars = box.selectAll('div').data(_data);
+      bars.enter().append('div').style('height', function(d, i) {
+        return 100 - y1(d) + '%';
       });
     });
   };
   return exports;
-});
+};
