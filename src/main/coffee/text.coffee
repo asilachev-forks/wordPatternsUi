@@ -54,20 +54,28 @@ class Paragraphs
             return 'border-left: 5px solid #999999'
 
         val = paragraph.metrics.mean
-        vval = 255 - Math.round(255.0 * (val - (@metrics.min)) / @metrics.max)
-        'border-left: 5px solid rgb(255,' + vval + ',' + vval + ');'
+        k = (val - @metrics.min) / @metrics.max
+        # vval = 255 - Math.round(255.0 * (val - (@metrics.min)) / @metrics.max)
+        color = d3.color(uiColors['red'])
+        color.opacity = Math.round(k * 1000)/1000.0
+        'border-left: 5px solid ' + color.toString() + ';'
 
     textStyle: (val) ->
         if not val
             return ''
 
         if val >= @ranges.min and val <= @ranges.max
+
             k = (val - (@metrics.l_min)) / @metrics.range
-            b = Math.round(0x3f * k + 0xff * (1 - k))
-            g = Math.round(0x12 * k + 0xff * (1 - k))
-            'background:rgb(255,' + g + ',' + b + ');'
+            color = d3.color(uiColors['red'])
+            color.opacity = Math.round(k * 1000)/1000.0
+
+            #b = Math.round(0x3f * k + 0xff * (1 - k))
+            #g = Math.round(0x12 * k + 0xff * (1 - k))
+            #'background:rgb(255,' + g + ',' + b + ');'
+            'background:' + color.toString() + ';'
         else
-            'color:#999999'
+            'color:' + uiColors['grey'] + ';'
 
     markDirty: ->
         p.changed = true for p in @paragraphs

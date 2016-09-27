@@ -1,6 +1,6 @@
 #var API_URL = 'https://textwell-api.herokuapp.com/text/metrics/v2/';
 API_URL = 'http://localhost:8090/text/metrics/v2/'
-text_metrics_module = angular.module('text_metrics.js', [])
+text_metrics_module = angular.module('text_metrics.js', ['mod_colors.js'])
 
 
 TextController = ($scope, $http, $sce, $timeout) ->

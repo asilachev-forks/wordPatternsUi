@@ -68,8 +68,8 @@ d3.custom.barChart = ->
             ########
             colorFn = (d,i) ->
                 if _data.ranges.min <= x1(i) <= _data.ranges.max
-                    return 'rgb(255,225,231)'
-                return '#ffffff'
+                    return uiColors['pink']
+                return uiColors['panel']
 
             if not box
                 box = d3.select(this).append('div').attr('class', 'bar-chart-az')

@@ -2,7 +2,7 @@ var API_URL, TextController, kdDashboardApp, text_metrics_module;
 
 API_URL = 'http://localhost:8090/text/metrics/v2/';
 
-text_metrics_module = angular.module('text_metrics.js', []);
+text_metrics_module = angular.module('text_metrics.js', ['mod_colors.js']);
 
 TextController = function($scope, $http, $sce, $timeout) {
   $scope.navState = 2;

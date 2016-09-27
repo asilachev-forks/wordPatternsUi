@@ -66,9 +66,9 @@ d3.custom.barChart = function() {
       colorFn = function(d, i) {
         var ref;
         if ((_data.ranges.min <= (ref = x1(i)) && ref <= _data.ranges.max)) {
-          return 'rgb(255,225,231)';
+          return uiColors['pink'];
         }
-        return '#ffffff';
+        return uiColors['panel'];
       };
       if (!box) {
         box = d3.select(this).append('div').attr('class', 'bar-chart-az');

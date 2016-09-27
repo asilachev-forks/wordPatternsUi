@@ -65,7 +65,7 @@ Paragraphs = (function() {
   };
 
   Paragraphs.prototype.paragraphsStyle = function(paragraph) {
-    var val, vval;
+    var color, k, val;
     if (!paragraph) {
       return '';
     }
@@ -73,22 +73,24 @@ Paragraphs = (function() {
       return 'border-left: 5px solid #999999';
     }
     val = paragraph.metrics.mean;
-    vval = 255 - Math.round(255.0 * (val - this.metrics.min) / this.metrics.max);
-    return 'border-left: 5px solid rgb(255,' + vval + ',' + vval + ');';
+    k = (val - this.metrics.min) / this.metrics.max;
+    color = d3.color(uiColors['red']);
+    color.opacity = Math.round(k * 1000) / 1000.0;
+    return 'border-left: 5px solid ' + color.toString() + ';';
   };
 
   Paragraphs.prototype.textStyle = function(val) {
-    var b, g, k;
+    var color, k;
     if (!val) {
       return '';
     }
     if (val >= this.ranges.min && val <= this.ranges.max) {
       k = (val - this.metrics.l_min) / this.metrics.range;
-      b = Math.round(0x3f * k + 0xff * (1 - k));
-      g = Math.round(0x12 * k + 0xff * (1 - k));
-      return 'background:rgb(255,' + g + ',' + b + ');';
+      color = d3.color(uiColors['red']);
+      color.opacity = Math.round(k * 1000) / 1000.0;
+      return 'background:' + color.toString() + ';';
     } else {
-      return 'color:#999999';
+      return 'color:' + uiColors['grey'] + ';';
     }
   };
 

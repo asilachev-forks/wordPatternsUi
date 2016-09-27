@@ -3,7 +3,7 @@ $palette-color-t: rgba(0,0,0, 0.0);
 
 $palette-color-green: #CDDF18;
 $palette-color-green-dark: #AEBD14;
-$palette-color-red: #BA123F;
+$palette-color-red: #FC124F;
 
 //oranges
 
@@ -44,4 +44,12 @@ $brand-inverse:             $gray-dark !default;
 
 .controls-panel-bg{
     background: $gray-lighter;
+}
+
+html{
+    --words-red: $palette-color-red;
+    --words-redtr: rgba($palette-color-red, 0.2);
+    --words-pink: lighten($palette-color-red, 43%);
+    --words-panel: $white;
+    --words-grey: $gray-light;
 }
