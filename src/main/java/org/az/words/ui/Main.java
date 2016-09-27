@@ -10,8 +10,8 @@ public class Main {
 
     private static final Log LOG = LogFactory.getLog(Main.class);
 
-    public static void main(final String[] args) {
-        SpringApplication.run(Main.class, args);
+    public static void main(final String[] argss) {
+        SpringApplication.run(Main.class, argss);
     }
 
 }

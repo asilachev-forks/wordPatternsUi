@@ -1,18 +1,47 @@
 @import "variables";
 @import "commons";
 
+$slider-padding: 15px;
 
 .bar-chart-az{
     width: 100%;
     height: 1.5cm;
     background: $gray-light;
-    overflow: hidden;
+    //overflow: hidden;
+    border-bottom: 1px solid $gray-light;
+
+
+    // padding-left: $slider-padding;
+    // padding-right: : $slider-padding;
+    // padding-top: $slider-padding;
+    // z-index:300
 
     div{
         background: $white;
         float:left;
-        min-height: 1px;
-        width: 0.39062%;// == 100/256
-        min-width: 0.39062%;
+
+        //min-height: 1px;
+        // width: 0.39062%;// == 100/256
+        // min-width: 0.39062%;
+    }
+}
+
+
+
+.histo{
+    padding-left: $slider-padding;
+    padding-right: $slider-padding;
+    padding-top: $slider-padding;
+    padding-bottom: 0;
+    z-index:300
+}
+
+.rzslider{
+    z-index:400;
+    margin: -$slider-padding 0 $slider-padding 0!important;
+    .rz-pointer.rz-active{
+        &:after{
+            background: $white!important;
+        }
     }
 }

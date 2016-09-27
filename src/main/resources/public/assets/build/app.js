@@ -87,6 +87,10 @@ TextController = function($scope, $http, $sce, $timeout) {
   };
   $scope.onParagraphsLoaded = function(analyzedParagraphs, paragraphIndex) {
     $scope.text.insertParagraphs(analyzedParagraphs, paragraphIndex);
+    $scope.ranges.options.floor = $scope.text.metrics.min;
+    $scope.ranges.options.ceil = $scope.text.metrics.max;
+    $scope.ranges.min = $scope.text.metrics.min + 10;
+    $scope.ranges.max = $scope.text.metrics.max - 10;
     return $scope.refreshSlider();
   };
   $scope.refreshSlider = function() {

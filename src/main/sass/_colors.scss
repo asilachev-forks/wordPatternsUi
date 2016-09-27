@@ -41,3 +41,7 @@ $brand-info:                $palette-color-blue-light !default;
 $brand-warning:             $palette-color-orange !default;
 $brand-danger:              $palette-color-red !default;
 $brand-inverse:             $gray-dark !default;
+
+.controls-panel-bg{
+    background: $gray-lighter;
+}

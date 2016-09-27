@@ -12,6 +12,7 @@ dshc.directive('keyValuePair', function($compile) {
     },
     transclude: true,
     restrict: 'C',
+    replace: true,
     templateUrl: '/partials/key_value_pair.html'
   };
 });

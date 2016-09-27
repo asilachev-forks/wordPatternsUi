@@ -21,12 +21,12 @@
 
         <!-- app JS -->
         <script src="/assets/js/messages.js"></script>
-        <script src="/assets/build/histo_.js"></script>
+        <script src="/assets/build/histo.js"></script>
 
         <script src="/assets/build/tools.js"></script>
         <script src="/assets/build/text.js"></script>
         <script src="/assets/build/app.js"></script>
-        <script src="/assets/build/components.js"></script>   
+        <script src="/assets/build/components.js"></script>
 
         <!-- CSS -->
         <link rel="stylesheet" href="/assets/css/az.css">
@@ -47,15 +47,16 @@
 	        </div>
 
 			<div class="row">
+ 
 
 	            <div class="col-xl-12" id="nav-tools" ng-show="navState>1 && !exportMode">
                     <!-- chart -->
-	                <div class="padding-small" style="z-index:300" ng-show="text.oneGramms && text.oneGramms.length>1">
-	                    <bar-chart data="text.oneGramms"></bar-chart>
+	                <div class="histo"  ng-show="text.oneGramms && text.oneGramms.length>1">
+	                    <bar-chart data="text.oneGramms" ranges="text.ranges"></bar-chart>
 	                </div>
 
                     <!-- slider -->
-	                <div class="padding-small" ng-show="text.oneGramms && text.oneGramms.length>1">
+	                <div ng-show="text.oneGramms && text.oneGramms.length>1">
 	                    <rzslider
 	                        rz-slider-model="text.ranges.min"
 	                        rz-slider-high="text.ranges.max"
@@ -64,15 +65,20 @@
 	            </div>
 
 
-	            <!-- METRICS -->
-	            <div  class="col-xl-12 padding-small" ng-show="navState > 2" loading="statsLoading" error="{{statsLoadingError}}">
-	                <div class="row">
-	                    <b     class="col-xs-12 col-sm-6 col-md-2 key-value-pair" key="{{msg['metrics.mean']}}"     value="{{text.metrics.mean|number:3}}"></b>
- 	                    <small class="col-xs-12 col-sm-6 col-md-3 key-value-pair" key="{{msg['metrics.count']}}"    value="{{text.metrics.count|bigNumber}}"></small>
-	                    <small class="col-xs-12 col-sm-6 col-md-5 key-value-pair" key="{{msg['metrics.countAll']}}" value="{{text.metrics.countAll|bigNumber}}"></small>
-	                </div>
- 	            </div><!-- /METRICS -->
 
+
+
+
+
+
+            </div>
+
+        </nav>
+
+        <main class="container-fluid dashboard">
+
+<div class="row">
+            <aside class="col-lg-3 controls-panel-bg">
 
                 <div class="dropdown">
                     <button class="btn dropdown-toggle btn-secondary"
@@ -86,57 +92,70 @@
                 </div>
 
 
-            </div>
+                <!-- METRICS -->
 
-        </nav>
+                <b     class=" key-value-pair" key="{{msg['metrics.mean']}}"     value="{{text.metrics.mean|number:3}}"></b>
+                <small class=" key-value-pair" key="{{msg['metrics.count']}}"    value="{{text.metrics.count|bigNumber}}"></small>
+                <small class=" key-value-pair" key="{{msg['metrics.countAll']}}" value="{{text.metrics.countAll|bigNumber}}"></small>
 
-        <main class="container-fluid dashboard">
+                <hr>
 
+                <section>
+                    <button ng-if="!exportMode" type="button" class="btn btn-secondary" ng-click="tec.clearAll(true)">Очистить всё!</button>&nbsp;
+                    <button ng-if="!exportMode" type="button" class="btn btn-primary" ng-click="tec.exportText()">Экспортировать!</button>&nbsp;
+                    <button ng-if="exportMode" type="button" class="btn btn-primary" ng-click="tec.exportText()">Редактировать!</button>&nbsp;
+                </section>
 
-            <section class="text-block-main" ng-cloak ng-if="!exportMode">
+            </aside>
 
-
-                <div class="paragraph" ng-repeat="para in text.paragraphs" style="{{text.paragraphsStyle(para)}}">
-                    <div class="p-index">{{$index+1}}</div>
-                    <div class="p-body" ng-click="selectParagraph($index)">
-
-                        <div class="cloner" >
-                            <!-- colored words -->
-                            <p ng-if="text.selectedParagraph!==para && !para.changed"><span
-                                style="{{text.textStyle(v[1])}}"
-                                ng-repeat="v in para.words">{{v[0]}}</span></p>
-
-                            <!-- just spacer to make textarea bigger -->
-                            <div class="spacer-text"
-                                ng-if="text.selectedParagraph===para">{{text.selectedParagraph.text}}<br></div>
-
-                            <div class="spacer-text"
-                                ng-if="para.loading">{{para.text}}<br></div>
+            <div class="col-lg-9">
+                <section class="text-block-main" ng-cloak ng-if="!exportMode">
 
 
-                            <throbber ng-if="para.loading" text="{{msg['throbber.colorizing']}}"></throbber>
+                    <div class="paragraph" ng-repeat="para in text.paragraphs" style="{{text.paragraphsStyle(para)}}">
+                        <div class="p-index">{{$index+1}}</div>
+                        <div class="p-body" ng-click="selectParagraph($index)">
 
-                            <textarea
-                                ng-class="[{'text-visible':text.selectedParagraph===para || para.changed}]"
-                                ng-change="tec.onParagraphChanged($index)"
-                                ng-focus="text.selectParagraph($index)"
-                                ng-blur="tec.onParagraphBlur($index)"
-                                ng-model="para.text"></textarea>
+                            <div class="cloner" >
+                                <!-- colored words -->
+                                <p ng-if="text.selectedParagraph!==para && !para.changed"><span
+                                    style="{{text.textStyle(v[1])}}"
+                                    ng-repeat="v in para.words">{{v[0]}}</span></p>
+
+                                <!-- just spacer to make textarea bigger -->
+                                <div class="spacer-text"
+                                    ng-if="text.selectedParagraph===para">{{text.selectedParagraph.text}}<br></div>
+
+                                <div class="spacer-text"
+                                    ng-if="para.loading">{{para.text}}<br></div>
+
+
+                                <throbber ng-if="para.loading" text="{{msg['throbber.colorizing']}}"></throbber>
+
+                                <textarea
+                                    ng-class="[{'text-visible':text.selectedParagraph===para || para.changed}]"
+                                    ng-change="tec.onParagraphChanged($index)"
+                                    ng-focus="text.selectParagraph($index)"
+                                    ng-blur="tec.onParagraphBlur($index)"
+                                    ng-model="para.text"></textarea>
+                            </div>
+
+                        </div>
+
+                        <div class="p-controls" ng-if="$index>0">
+                            <button
+                            	ng-if="!para.loading && !para.changed && !text.paragraphs[$index-1].loading && !text.paragraphs[$index-1].changed"
+                            	ng-click="tec.onParagraphMerge($index)"
+                            	type="button"
+                            	class="btn btn-secondary btn-circle"><i class="fa fa-plus"></i></button>
                         </div>
 
                     </div>
 
-                    <div class="p-controls" ng-if="$index>0">
-                        <button
-                        	ng-if="!para.loading && !para.changed && !text.paragraphs[$index-1].loading && !text.paragraphs[$index-1].changed"
-                        	ng-click="tec.onParagraphMerge($index)"
-                        	type="button"
-                        	class="btn btn-secondary btn-circle"><i class="fa fa-plus"></i></button>
-                    </div>
+                </section>
+            </div>
 
-                </div>
-
-            </section>
+</div>
 
             <section ng-if="exportMode" class="padding-small keep-line-br">
                 {{exportedText}}
@@ -144,11 +163,7 @@
 
              <hr/>
 
-            <section class="padding-small">
-                <button ng-if="!exportMode" type="button" class="btn btn-secondary" ng-click="tec.clearAll(true)">Очистить всё!</button>&nbsp;
-                <button ng-if="!exportMode" type="button" class="btn btn-primary" ng-click="tec.exportText()">Экспортировать!</button>&nbsp;
-                <button ng-if="exportMode" type="button" class="btn btn-primary" ng-click="tec.exportText()">Редактировать!</button>&nbsp;
-            </section>
+
 
             <hr/>
 

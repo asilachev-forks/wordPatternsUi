@@ -91,7 +91,6 @@ module.exports = function(grunt) {
         },
 
         watch: {
-
             coffee: {
                 files: [
                     'src/main/coffee/*.coffee'

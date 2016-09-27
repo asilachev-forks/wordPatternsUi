@@ -78,6 +78,9 @@ class Paragraphs
         cnt = 0
         @oneGramms = []
 
+        #@oneGramms.push(0)
+        #@oneGramms.push(255)
+
         for p in @paragraphs
             for word in p.words
                 cnt++
