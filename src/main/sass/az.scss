@@ -52,9 +52,6 @@ $fa-font-path: "/assets/vendor/components-font-awesome/fonts" !default;
 $sidebar-width:5.5cm;
 
 
-
-
-
 footer.container, footer .container, header.container{
     padding: 0;
 }
@@ -122,10 +119,15 @@ h1{
     font-size: $font-size-xs;
     border-bottom: 1px solid $shadow-color;
     // position: relative;
-    display: block;
-    &:after{
-        clear: both;
-    }
+    // display: block;
+    // clear: both;
+    // &:after{
+    //     clear: both;
+    //     content: 'a';
+    // }
+    // &::after{
+    //     clear: both;
+    // }
 
     &:last-of-type {
         border-bottom: 1px solid transparent;
@@ -134,37 +136,10 @@ h1{
     .key {
         overflow: hidden;
         padding-left: 0;
-        display: inline;
     }
 
     .value {
-        float: right;
         text-align: right;
-        min-width: 4rem;
-        // position: absolute;
-        // right: 0;
-        // top: 0;
-        // //overflow: hidden;
-        // padding-right: 0;
-        // z-index: 200;
-        // &:before{
-        //     position: relative;
-        //     right: 0;
-        //     padding-left: 3rem;
-        //     content: "  ";
-        //     @include gradient-left(rgba($panel-bg, 0), rgba($panel-bg, 1));
-        // }
-        // &:after{
-        //     background: $panel-bg;
-        //     content: " ";
-        //     position: absolute;
-        //     left:3rem;
-        //     right:0;
-        //     top:0;
-        //     bottom:0;
-        //     z-index:-100;
-        // }
-
     }
 
     padding: $spacer/6;

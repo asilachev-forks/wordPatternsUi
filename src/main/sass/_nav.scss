@@ -51,11 +51,11 @@ aside{
     padding: $spacer/4;
     //@extend .gradient-bg;
 
-    @include media-breakpoint-down(md) {
-        height: auto;
-        width: 100%;
+    @include media-breakpoint-down(sm) {
+        // height: auto;
+        // width: 100%;
 
-        background: $white;
+        // background: $white;
         -webkit-box-shadow: 0px 12px 25px 0px rgba(0,0,0,0.26);
         -moz-box-shadow: 0px 12px 25px 0px rgba(0,0,0,0.26);
         box-shadow: 0px 12px 25px 0px rgba(0,0,0,0.26);
@@ -75,9 +75,7 @@ aside{
         max-height: $main-button-size + (2 * $main-button-offset);
         min-height: $main-button-size + (2 * $main-button-offset);
     }
-    // .btn-main{
-    //     top: $main-button-offset;
-    // }
+
     .btn-main-pic{
         @extend .fa-angle-down;
     }
@@ -102,9 +100,9 @@ aside{
     }
 
     .dashboard{
-        @include media-breakpoint-down(md) {
-            padding-top: 12cm;
-        }
+        // @include media-breakpoint-down(md) {
+        //     padding-top: 12cm;
+        // }
     }
 
     .btn-main-pic{

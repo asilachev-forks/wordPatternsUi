@@ -5937,11 +5937,8 @@ aside {
   height: 100%;
   background: #f5f5f5;
   padding: 0.25cm; }
-  @media (max-width: 991px) {
+  @media (max-width: 767px) {
     aside {
-      height: auto;
-      width: 100%;
-      background: #ffffff;
       -webkit-box-shadow: 0px 12px 25px 0px rgba(0, 0, 0, 0.26);
       -moz-box-shadow: 0px 12px 25px 0px rgba(0, 0, 0, 0.26);
       box-shadow: 0px 12px 25px 0px rgba(0, 0, 0, 0.26); } }
@@ -5958,9 +5955,6 @@ aside {
   max-height: 300px; }
 .navbar-state-2 .dashboard, .navbar-state-2 aside {
   padding-top: 4cm; }
-@media (max-width: 991px) {
-  .navbar-state-2 .dashboard {
-    padding-top: 12cm; } }
 
 .controls-panel-bg {
   background: #f5f5f5; }
@@ -6167,7 +6161,6 @@ html {
     top: 0;
     bottom: 0;
     left: 0;
-    padding: 0.125cm;
     text-align: center;
     z-index: 1000;
     background: rgba(245, 245, 245, 0.9); }
@@ -6243,20 +6236,14 @@ h1 {
 .key-value {
   font-size: 0.75rem;
   border-bottom: 1px solid rgba(53, 64, 82, 0.1);
-  display: block;
   padding: 0.16667cm; }
-  .key-value:after {
-    clear: both; }
   .key-value:last-of-type {
     border-bottom: 1px solid transparent; }
   .key-value .key {
     overflow: hidden;
-    padding-left: 0;
-    display: inline; }
+    padding-left: 0; }
   .key-value .value {
-    float: right;
-    text-align: right;
-    min-width: 4rem; }
+    text-align: right; }
 
 .card {
   border: none;

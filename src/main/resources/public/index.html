@@ -59,7 +59,7 @@
         </nav>
 
         <main class="container-fluid dashboard">
-            <aside >
+            <aside class="hidden-sm-down" >
 
                 <div class="dropdown">
                     <button class="btn dropdown-toggle btn-secondary btn-block"
@@ -73,23 +73,25 @@
                 </div>
 
                 <!-- METRICS -->
-                <b     class=" key-value-pair" key="{{msg['metrics.mean']}}"     value="{{text.metrics.mean|number:3}}"></b>
-                <small class=" key-value-pair" key="{{msg['metrics.count']}}"    value="{{text.metrics.count|bigNumber}}"></small>
-                <small class=" key-value-pair" key="{{msg['metrics.countAll']}}" value="{{text.metrics.countAll|bigNumber}}"></small>
+                <section>
+	                <b     class=" key-value-pair" key="{{msg['metrics.mean']}}"     value="{{text.metrics.mean|number:3}}"></b>
+	                <small class=" key-value-pair" key="{{msg['metrics.count']}}"    value="{{text.metrics.count|bigNumber}}"></small>
+	                <small class=" key-value-pair" key="{{msg['metrics.countAll']}}" value="{{text.metrics.countAll|bigNumber}}"></small>
+	            </section>
 
                 <section class="row row-no-padding">
-                    <div class="col-xs-6" ng-if="!exportMode"><button  type="button" class="btn btn-secondary btn-block" ng-click="tec.clearAll(true)">Очистить всё!</button>&nbsp;</div>
-                    <div class="col-xs-6" ng-if="!exportMode"><button  type="button" class="btn btn-primary btn-block" ng-click="tec.exportText()">Экспортировать!</button>&nbsp;</div>
-                    <div class="col-xs-6" ng-if="exportMode"><button  type="button" class="btn btn-primary btn-block" ng-click="tec.exportText()">Редактировать!</button>&nbsp;</div>
+                    <div class="col-sm" ng-if="!exportMode"><button  type="button" class="btn btn-secondary" ng-click="tec.clearAll(true)">Очистить всё!</button>&nbsp;</div>
+                    <div class="col-sm" ng-if="!exportMode"><button  type="button" class="btn btn-primary" ng-click="tec.exportText()">Экспортировать!</button>&nbsp;</div>
+                    <div class="col-sm" ng-if="exportMode"><button  type="button" class="btn btn-primary" ng-click="tec.exportText()">Редактировать!</button>&nbsp;</div>
                 </section>
 
             </aside>
 
             <div class="row">
 
-                <div id="pusher" class="col-lg-3"></div>
+                <div id="pusher" class="col-sm-12 col-md-3"></div>
 
-                <div class="col-lg-9">
+                <div class="col-sm-12 col-md-9">
                     <section class="text-block-main" ng-cloak ng-if="!exportMode">
 
 

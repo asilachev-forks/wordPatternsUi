@@ -21,7 +21,6 @@ dshc.directive 'throbber', ($compile) ->
     replace: true
     templateUrl: '/partials/throbber.html'
 
-
 dshc.directive 'dashboardWidget', ($compile) ->
     scope:
         title: '@'
@@ -46,13 +45,13 @@ dshc.filter 'percentage', ->
 
 dshc.filter 'bigNumber', ->
     (nom) ->
-        n = nom;
+        n = nom
 
         if isNaN(nom) or String(nom) == 'NaN'
             return '-'
 
         if Math.abs(n) < 5
-            return Math.round(no * 10.0) / 10;
+            return Math.round(no * 10.0) / 10
 
         if Math.abs(n) > 5
             n = Math.round(nom)
@@ -66,7 +65,7 @@ dshc.filter 'bigNumber', ->
             return (_n / 10) + "K"
 
         if n > 1000000
-            _n = Math.round(n / 100000);
+            _n = Math.round(n / 100000)
             return (_n / 10) + "M"
 
         return n
