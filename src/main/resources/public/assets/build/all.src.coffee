@@ -194,7 +194,6 @@ dshc.directive 'throbber', ($compile) ->
     replace: true
     templateUrl: '/partials/throbber.html'
 
-
 dshc.directive 'dashboardWidget', ($compile) ->
     scope:
         title: '@'
@@ -219,13 +218,13 @@ dshc.filter 'percentage', ->
 
 dshc.filter 'bigNumber', ->
     (nom) ->
-        n = nom;
+        n = nom
 
         if isNaN(nom) or String(nom) == 'NaN'
             return '-'
 
         if Math.abs(n) < 5
-            return Math.round(no * 10.0) / 10;
+            return Math.round(no * 10.0) / 10
 
         if Math.abs(n) > 5
             n = Math.round(nom)
@@ -239,7 +238,7 @@ dshc.filter 'bigNumber', ->
             return (_n / 10) + "K"
 
         if n > 1000000
-            _n = Math.round(n / 100000);
+            _n = Math.round(n / 100000)
             return (_n / 10) + "M"
 
         return n
@@ -442,7 +441,7 @@ class Paragraphs
         #remove old one;
         @paragraphs.splice paragraphIndex, 1
 
-        #normally, we should get 1 Paragraph, if the test was small;
+        #normally, we should get 1 Paragraph, if the text was small;
         console.log 'loaded ' + analyzedParagraphs.length + ' paragraphs, start index=' + paragraphIndex
         i=0
         for p in analyzedParagraphs
@@ -475,15 +474,15 @@ class Paragraphs
 
 
     selectParagraph: (index) ->
-        @selectedParagraphIndex = index;
+        @selectedParagraphIndex = index
         @selectedParagraph = @paragraphs[index]
         return
 
 
     onThresholds: ->
-        @metrics.l_min = Math.max(@ranges.min, @metrics.min);
-        @metrics.l_max = Math.min(@ranges.max, @metrics.max);
-        @metrics.range = @metrics.l_max - @metrics.l_min;
+        @metrics.l_min = Math.max(@ranges.min, @metrics.min)
+        @metrics.l_max = Math.min(@ranges.max, @metrics.max)
+        @metrics.range = @metrics.l_max - @metrics.l_min
         return
 
 getResponseError = (data) ->

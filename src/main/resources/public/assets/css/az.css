@@ -3600,36 +3600,24 @@ select.form-control:focus::-ms-value {
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
   margin-bottom: 0; }
-  .form-control-static.form-control-sm, .input-group-sm > .form-control-static.form-control,
-  .input-group-sm > .form-control-static.input-group-addon,
-  .input-group-sm > .input-group-btn > .form-control-static.btn, .form-control-static.form-control-lg, .input-group-lg > .form-control-static.form-control,
-  .input-group-lg > .form-control-static.input-group-addon,
-  .input-group-lg > .input-group-btn > .form-control-static.btn {
+  .form-control-static.form-control-sm, .form-control-static.form-control-lg {
     padding-right: 0;
     padding-left: 0; }
 
-.form-control-sm, .input-group-sm > .form-control,
-.input-group-sm > .input-group-addon,
-.input-group-sm > .input-group-btn > .btn {
+.form-control-sm {
   padding: 0.25rem 0.5rem;
   font-size: 0.875rem;
   border-radius: 0.2rem; }
 
-select.form-control-sm:not([size]):not([multiple]), .input-group-sm > select.form-control:not([size]):not([multiple]),
-.input-group-sm > select.input-group-addon:not([size]):not([multiple]),
-.input-group-sm > .input-group-btn > select.btn:not([size]):not([multiple]) {
+select.form-control-sm:not([size]):not([multiple]) {
   height: 1.8125rem; }
 
-.form-control-lg, .input-group-lg > .form-control,
-.input-group-lg > .input-group-addon,
-.input-group-lg > .input-group-btn > .btn {
+.form-control-lg {
   padding: 0.75rem 1.5rem;
   font-size: 1.25rem;
   border-radius: 0.3rem; }
 
-select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.form-control:not([size]):not([multiple]),
-.input-group-lg > select.input-group-addon:not([size]):not([multiple]),
-.input-group-lg > .input-group-btn > select.btn:not([size]):not([multiple]) {
+select.form-control-lg:not([size]):not([multiple]) {
   height: 3.16667rem; }
 
 .form-group {
@@ -3885,104 +3873,6 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
   top: auto;
   bottom: 100%;
   margin-bottom: 2px; }
-
-.input-group {
-  position: relative;
-  width: 100%;
-  display: flex; }
-  .input-group .form-control {
-    position: relative;
-    z-index: 2;
-    flex: 1;
-    margin-bottom: 0; }
-    .input-group .form-control:focus, .input-group .form-control:active, .input-group .form-control:hover {
-      z-index: 3; }
-
-.input-group-addon:not(:first-child):not(:last-child),
-.input-group-btn:not(:first-child):not(:last-child),
-.input-group .form-control:not(:first-child):not(:last-child) {
-  border-radius: 0; }
-
-.input-group-addon,
-.input-group-btn {
-  white-space: nowrap;
-  vertical-align: middle; }
-
-.input-group-addon {
-  padding: 0.5rem 0.75rem;
-  margin-bottom: 0;
-  font-size: 1rem;
-  font-weight: normal;
-  line-height: 1.25;
-  color: #5b6779;
-  text-align: center;
-  background-color: #f5f5f5;
-  border: 1px solid #b7c0cd;
-  border-radius: 0.25rem; }
-  .input-group-addon.form-control-sm,
-  .input-group-sm > .input-group-addon,
-  .input-group-sm > .input-group-btn > .input-group-addon.btn {
-    padding: 0.25rem 0.5rem;
-    font-size: 0.875rem;
-    border-radius: 0.2rem; }
-  .input-group-addon.form-control-lg,
-  .input-group-lg > .input-group-addon,
-  .input-group-lg > .input-group-btn > .input-group-addon.btn {
-    padding: 0.75rem 1.5rem;
-    font-size: 1.25rem;
-    border-radius: 0.3rem; }
-  .input-group-addon input[type="radio"],
-  .input-group-addon input[type="checkbox"] {
-    margin-top: 0; }
-
-.input-group .form-control:not(:last-child),
-.input-group-addon:not(:last-child),
-.input-group-btn:not(:last-child) > .btn,
-.input-group-btn:not(:last-child) > .btn-group > .btn,
-.input-group-btn:not(:last-child) > .dropdown-toggle,
-.input-group-btn:not(:first-child) > .btn:not(:last-child):not(.dropdown-toggle),
-.input-group-btn:not(:first-child) > .btn-group:not(:last-child) > .btn {
-  border-bottom-right-radius: 0;
-  border-top-right-radius: 0; }
-
-.input-group-addon:not(:last-child) {
-  border-right: 0; }
-
-.input-group .form-control:not(:first-child),
-.input-group-addon:not(:first-child),
-.input-group-btn:not(:first-child) > .btn,
-.input-group-btn:not(:first-child) > .btn-group > .btn,
-.input-group-btn:not(:first-child) > .dropdown-toggle,
-.input-group-btn:not(:last-child) > .btn:not(:first-child),
-.input-group-btn:not(:last-child) > .btn-group:not(:first-child) > .btn {
-  border-bottom-left-radius: 0;
-  border-top-left-radius: 0; }
-
-.form-control + .input-group-addon:not(:first-child) {
-  border-left: 0; }
-
-.input-group-btn {
-  position: relative;
-  font-size: 0;
-  white-space: nowrap; }
-  .input-group-btn > .btn {
-    position: relative; }
-    .input-group-btn > .btn + .btn {
-      margin-left: -1px; }
-    .input-group-btn > .btn:focus, .input-group-btn > .btn:active, .input-group-btn > .btn:hover {
-      z-index: 3; }
-  .input-group-btn:not(:last-child) > .btn,
-  .input-group-btn:not(:last-child) > .btn-group {
-    margin-right: -1px; }
-  .input-group-btn:not(:first-child) > .btn,
-  .input-group-btn:not(:first-child) > .btn-group {
-    z-index: 2;
-    margin-left: -1px; }
-    .input-group-btn:not(:first-child) > .btn:focus, .input-group-btn:not(:first-child) > .btn:active, .input-group-btn:not(:first-child) > .btn:hover,
-    .input-group-btn:not(:first-child) > .btn-group:focus,
-    .input-group-btn:not(:first-child) > .btn-group:active,
-    .input-group-btn:not(:first-child) > .btn-group:hover {
-      z-index: 3; }
 
 .custom-control {
   position: relative;
@@ -4386,194 +4276,6 @@ select.form-control-lg:not([size]):not([multiple]), .input-group-lg > select.for
 @media (min-width: 992px) {
   .navbar-toggleable-md {
     display: block !important; } }
-
-.alert {
-  padding: 15px;
-  margin-bottom: 1cm;
-  border: 1px solid transparent;
-  border-radius: 0.25rem; }
-
-.alert-heading {
-  color: inherit; }
-
-.alert-link {
-  font-weight: bold; }
-
-.alert-dismissible {
-  padding-right: 30px; }
-  .alert-dismissible .close {
-    position: relative;
-    top: -.125rem;
-    right: -15px;
-    color: inherit; }
-
-.alert-success {
-  background-color: #dff0d8;
-  border-color: #d0e9c6;
-  color: #3c763d; }
-  .alert-success hr {
-    border-top-color: #c1e2b3; }
-  .alert-success .alert-link {
-    color: #2b542c; }
-
-.alert-info {
-  background-color: #d9edf7;
-  border-color: #bcdff1;
-  color: #31708f; }
-  .alert-info hr {
-    border-top-color: #a6d5ec; }
-  .alert-info .alert-link {
-    color: #245269; }
-
-.alert-warning {
-  background-color: #fcf8e3;
-  border-color: #faf2cc;
-  color: #8a6d3b; }
-  .alert-warning hr {
-    border-top-color: #f7ecb5; }
-  .alert-warning .alert-link {
-    color: #66512c; }
-
-.alert-danger {
-  background-color: #f2dede;
-  border-color: #ebcccc;
-  color: #a94442; }
-  .alert-danger hr {
-    border-top-color: #e4b9b9; }
-  .alert-danger .alert-link {
-    color: #843534; }
-
-@keyframes progress-bar-stripes {
-  from {
-    background-position: 1cm 0; }
-  to {
-    background-position: 0 0; } }
-.progress {
-  display: block;
-  width: 100%;
-  height: 1cm;
-  margin-bottom: 1cm; }
-
-.progress[value] {
-  background-color: #eee;
-  border: 0;
-  appearance: none;
-  border-radius: 0.25rem; }
-
-.progress[value]::-ms-fill {
-  background-color: #0074d9;
-  border: 0; }
-
-.progress[value]::-moz-progress-bar {
-  background-color: #0074d9;
-  border-bottom-left-radius: 0.25rem;
-  border-top-left-radius: 0.25rem; }
-
-.progress[value]::-webkit-progress-value {
-  background-color: #0074d9;
-  border-bottom-left-radius: 0.25rem;
-  border-top-left-radius: 0.25rem; }
-
-.progress[value="100"]::-moz-progress-bar {
-  border-bottom-right-radius: 0.25rem;
-  border-top-right-radius: 0.25rem; }
-
-.progress[value="100"]::-webkit-progress-value {
-  border-bottom-right-radius: 0.25rem;
-  border-top-right-radius: 0.25rem; }
-
-.progress[value]::-webkit-progress-bar {
-  background-color: #eee;
-  border-radius: 0.25rem;
-  box-shadow: inset 0 0.1rem 0.1rem rgba(0, 0, 0, 0.1); }
-
-base::-moz-progress-bar,
-.progress[value] {
-  background-color: #eee;
-  border-radius: 0.25rem;
-  box-shadow: inset 0 0.1rem 0.1rem rgba(0, 0, 0, 0.1); }
-
-@media screen and (min-width: 0\0) {
-  .progress {
-    background-color: #eee;
-    border-radius: 0.25rem;
-    box-shadow: inset 0 0.1rem 0.1rem rgba(0, 0, 0, 0.1); }
-
-  .progress-bar {
-    display: inline-block;
-    height: 1cm;
-    text-indent: -999rem;
-    background-color: #0074d9;
-    border-bottom-left-radius: 0.25rem;
-    border-top-left-radius: 0.25rem; }
-
-  .progress[width="100%"] {
-    border-bottom-right-radius: 0.25rem;
-    border-top-right-radius: 0.25rem; } }
-.progress-striped[value]::-webkit-progress-value {
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-size: 1cm 1cm; }
-
-.progress-striped[value]::-moz-progress-bar {
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-size: 1cm 1cm; }
-
-.progress-striped[value]::-ms-fill {
-  background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-  background-size: 1cm 1cm; }
-
-@media screen and (min-width: 0\0) {
-  .progress-bar-striped {
-    background-image: linear-gradient(45deg, rgba(255, 255, 255, 0.15) 25%, transparent 25%, transparent 50%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.15) 75%, transparent 75%, transparent);
-    background-size: 1cm 1cm; } }
-.progress-animated[value]::-webkit-progress-value {
-  animation: progress-bar-stripes 2s linear infinite; }
-
-.progress-animated[value]::-moz-progress-bar {
-  animation: progress-bar-stripes 2s linear infinite; }
-
-@media screen and (min-width: 0\0) {
-  .progress-animated .progress-bar-striped {
-    animation: progress-bar-stripes 2s linear infinite; } }
-.progress-success[value]::-webkit-progress-value {
-  background-color: #CDDF18; }
-.progress-success[value]::-moz-progress-bar {
-  background-color: #CDDF18; }
-.progress-success[value]::-ms-fill {
-  background-color: #CDDF18; }
-@media screen and (min-width: 0\0) {
-  .progress-success .progress-bar {
-    background-color: #CDDF18; } }
-
-.progress-info[value]::-webkit-progress-value {
-  background-color: #7B9EB7; }
-.progress-info[value]::-moz-progress-bar {
-  background-color: #7B9EB7; }
-.progress-info[value]::-ms-fill {
-  background-color: #7B9EB7; }
-@media screen and (min-width: 0\0) {
-  .progress-info .progress-bar {
-    background-color: #7B9EB7; } }
-
-.progress-warning[value]::-webkit-progress-value {
-  background-color: #f39f0b; }
-.progress-warning[value]::-moz-progress-bar {
-  background-color: #f39f0b; }
-.progress-warning[value]::-ms-fill {
-  background-color: #f39f0b; }
-@media screen and (min-width: 0\0) {
-  .progress-warning .progress-bar {
-    background-color: #f39f0b; } }
-
-.progress-danger[value]::-webkit-progress-value {
-  background-color: #FC124F; }
-.progress-danger[value]::-moz-progress-bar {
-  background-color: #FC124F; }
-.progress-danger[value]::-ms-fill {
-  background-color: #FC124F; }
-@media screen and (min-width: 0\0) {
-  .progress-danger .progress-bar {
-    background-color: #FC124F; } }
 
 .media {
   display: flex; }

@@ -24,8 +24,6 @@ module.exports = function(grunt) {
                         'tether/**/*min.js',
                         'moment/**/*min.js',
                         'bootstrap/dist/js/bootstrap.min.js',
-                        'chart.js/**/*min.js',
-                        'angular-chart.js/**/*min.js',
                         'angularjs-slider/dist/*min.*',
                         'd3/build/*min.js'
                     ],
