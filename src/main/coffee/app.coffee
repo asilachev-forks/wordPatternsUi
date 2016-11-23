@@ -6,10 +6,11 @@ text_metrics_module = angular.module('text_metrics.js', ['mod_colors.js'])
 TextController = ($scope, $http, $sce, $timeout) ->
     $scope.navState = 2; #half-opened by default
 
-    @showHideNav = ->
-        $scope.navState++
-        if $scope.navState > 3
+    @showHideNav = ->        
+        if $scope.navState == 2
             $scope.navState = 1
+        else
+            $scope.navState = 2
 
         if $scope.navState > 1
             $scope.refreshSlider()

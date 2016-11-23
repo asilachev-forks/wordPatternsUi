@@ -51,14 +51,14 @@ class Paragraphs
         if not paragraph
             return ''
         if paragraph.changed
-            return 'border-left: 5px solid #999999'
+            return 'border-right: 5px solid #999999'
 
         val = paragraph.metrics.mean
         k = (val - @metrics.min) / @metrics.max
         # vval = 255 - Math.round(255.0 * (val - (@metrics.min)) / @metrics.max)
         color = d3.color(uiColors['red'])
         color.opacity = Math.round(k * 1000)/1000.0
-        'border-left: 5px solid ' + color.toString() + ';'
+        'border-right: 5px solid ' + color.toString() + ';'
 
     textStyle: (val) ->
         if not val

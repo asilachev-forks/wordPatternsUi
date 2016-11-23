@@ -7,9 +7,10 @@ text_metrics_module = angular.module('text_metrics.js', ['mod_colors.js']);
 TextController = function($scope, $http, $sce, $timeout) {
   $scope.navState = 2;
   this.showHideNav = function() {
-    $scope.navState++;
-    if ($scope.navState > 3) {
+    if ($scope.navState === 2) {
       $scope.navState = 1;
+    } else {
+      $scope.navState = 2;
     }
     if ($scope.navState > 1) {
       $scope.refreshSlider();
@@ -127,3 +128,5 @@ TextController = function($scope, $http, $sce, $timeout) {
 text_metrics_module.controller('textCtrl', ['$scope', '$http', '$sce', '$timeout', TextController]);
 
 kdDashboardApp = angular.module('kdDashboardApp', ['dashboard_components.js', 'text_metrics.js', 'charts.js', 'rzModule']);
+
+//# sourceMappingURL=app.js.map

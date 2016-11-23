@@ -82,3 +82,5 @@ d3.custom.barChart = function() {
   };
   return exports;
 };
+
+//# sourceMappingURL=histo.js.map

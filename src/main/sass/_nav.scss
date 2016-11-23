@@ -6,9 +6,9 @@ nav, .navbar{
 }
 .navbar-fixed-top{
     padding-top: 0!important;
-    padding-left: 0!important;
+    padding-right: 0!important;
     padding-bottom: 0!important;
-    padding-right: $main-button-size + (2 * $main-button-offset);
+    padding-left: $main-button-size + (2 * $main-button-offset);
     background:    $gray-lighter;
     @extend .sizeTransition;
 }
@@ -23,7 +23,7 @@ nav, .navbar{
 
 .btn-main{
     //position: fixed;
-    right:$main-button-offset;
+    left:$main-button-offset;
     // top: $main-button-offset;
     position: absolute;
     bottom: $main-button-offset;
@@ -36,6 +36,30 @@ nav, .navbar{
 }
 .dashboard{
     @extend .sizeTransitionPadding;
+}
+
+aside{
+    position: fixed;
+    top: 0;
+    left:0;
+    width: 25%;
+    z-index: 200;
+    height: 100%;
+
+    @extend .sizeTransition;
+    background: $gray-lighter;
+    padding: $spacer/4;
+    //@extend .gradient-bg;
+
+    @include media-breakpoint-down(md) {
+        height: auto;
+        width: 100%;
+
+        background: $white;
+        -webkit-box-shadow: 0px 12px 25px 0px rgba(0,0,0,0.26);
+        -moz-box-shadow: 0px 12px 25px 0px rgba(0,0,0,0.26);
+        box-shadow: 0px 12px 25px 0px rgba(0,0,0,0.26);
+    }
 }
 
 //------------
@@ -57,9 +81,10 @@ nav, .navbar{
     .btn-main-pic{
         @extend .fa-angle-down;
     }
-    .dashboard{
-        padding-top: $main-button-size + (2 * $main-button-offset);
+    .dashboard, aside{
+        padding-top: $main-button-size + (3 * $main-button-offset);
     }
+
 }
 
 .navbar-state-2{
@@ -68,38 +93,21 @@ nav, .navbar{
         @extend .gradient-bg;
         min-height: $main-button-size + (2 * $main-button-offset);
         max-height: 300px;
+
+
     }
 
-    .dashboard{
+    .dashboard, aside{
         padding-top: $spacer*4;
     }
 
-    // .btn-main{
-    //     top: $main-button-offset;
-    // }
-    .btn-main-pic{
-        @extend .fa-angle-down;
-    }
-}
-
-.navbar-state-3{
-    //fully opened
-    .navbar-fixed-top{
-        @extend .gradient-bg;
-        max-height: 500px;
-    }
     .dashboard{
-        padding-top: $spacer*8;
+        @include media-breakpoint-down(md) {
+            padding-top: 12cm;
+        }
     }
-    // .btn-main{
-    //     top: 0.5cm;
-    // }
 
     .btn-main-pic{
         @extend .fa-angle-up;
     }
-}
-
-.bg-faded{
-    background: transparent;
 }

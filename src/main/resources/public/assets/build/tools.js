@@ -48,3 +48,5 @@ meanInRange = function(array, fmin, fmax) {
   }
   return sum / cnt;
 };
+
+//# sourceMappingURL=tools.js.map

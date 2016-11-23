@@ -14,3 +14,5 @@ mod_colors.run(function() {
     uiColors[c] = htmlStyles.getPropertyValue('--words-' + c).trim();
   }
 });
+
+//# sourceMappingURL=colors.js.map

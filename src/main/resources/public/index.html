@@ -5,17 +5,15 @@
     	<!-- CSS -->
         <link rel="stylesheet" href="/assets/css/az.css">
         <link rel="stylesheet" href="/assets/vendor/angularjs-slider/dist/rzslider.min.css">
-        
+
         <meta name="viewport" content="initial-scale=1"/>
         <meta property="article:author" content="https://www.facebook.com/zaborskiy" />
         <title>Creative writing tools: words stats</title>
 
-        <meta property="og:description" content="Вот инструмент, исполненный в стремлении разбавить однообразность писанины. Вписывайте в прямоугольник слова, нежно массируйте кнопочку Analyse и наблюдайте спелые лексемы" />
+        <meta property="og:description" content="Вот инструмент, исполненный в стремлении разбавить однообразность писанины. Вписывайте в прямоугольник слова и наблюдайте спелые лексемы." />
         <meta property="og:image" content="https://textwell.herokuapp.com/assets/img/ogimage.png" />
 
-
         <!-- 3rd parties JS -->
-
         <script src="/assets/vendor/jquery/dist/jquery.min.js"></script>
         <script src="/assets/vendor/bootstrap/dist/js/bootstrap.min.js"></script>
         <script src="/assets/vendor/underscore/underscore-min.js"></script>
@@ -23,19 +21,9 @@
         <script src="/assets/vendor/angularjs-slider/dist/rzslider.min.js"></script>
         <script src="/assets/vendor/d3/build/d3.min.js"></script>
 
-		<script src="/assets/build/colors.js"></script>
-        <script src="/assets/build/tools.js"></script>
-        
-        <!-- app JS -->
+		<script src="/assets/build/all.js"></script>
         <script src="/assets/js/messages.js"></script>
-        <script src="/assets/build/histo.js"></script>
 
-        
-        <script src="/assets/build/text.js"></script>
-        <script src="/assets/build/app.js"></script>
-        <script src="/assets/build/components.js"></script>
-
-        
 
     </head>
 
@@ -46,47 +34,35 @@
 
         <nav class="navbar navbar-fixed-top navbar-light" >
 
-        	<div class="btn-main">
+            <div id="nav-tools" ng-show="navState>1 && !exportMode">
+                <!-- chart -->
+                <div class="histo"  ng-show="text.oneGramms && text.oneGramms.length>1">
+                    <bar-chart data="text.oneGramms" ranges="text.ranges"></bar-chart>
+                </div>
+
+                <!-- slider -->
+                <div ng-show="text.oneGramms && text.oneGramms.length>1">
+                    <rzslider
+                        rz-slider-model="text.ranges.min"
+                        rz-slider-high="text.ranges.max"
+                        rz-slider-options="text.ranges.options"></rzslider>
+                </div>
+            </div>
+
+
+
+            <div class="btn-main">
 	            <button ng-click="tec.showHideNav()" type="button"
 	                class="btn btn-brand btn-circle btn-lg"><i class="btn-main-pic"></i></button>
 	        </div>
 
-			<div class="row">
-
-
-	            <div class="col-xl-12" id="nav-tools" ng-show="navState>1 && !exportMode">
-                    <!-- chart -->
-	                <div class="histo"  ng-show="text.oneGramms && text.oneGramms.length>1">
-	                    <bar-chart data="text.oneGramms" ranges="text.ranges"></bar-chart>
-	                </div>
-
-                    <!-- slider -->
-	                <div ng-show="text.oneGramms && text.oneGramms.length>1">
-	                    <rzslider
-	                        rz-slider-model="text.ranges.min"
-	                        rz-slider-high="text.ranges.max"
-	                        rz-slider-options="text.ranges.options"></rzslider>
-	                </div>
-	            </div>
-
-
-
-
-
-
-
-
-            </div>
-
         </nav>
 
         <main class="container-fluid dashboard">
-
-<div class="row">
-            <aside class="col-lg-3 controls-panel-bg">
+            <aside >
 
                 <div class="dropdown">
-                    <button class="btn dropdown-toggle btn-secondary"
+                    <button class="btn dropdown-toggle btn-secondary btn-block"
                          type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         {{selectedApi.name}}
                     </button>
@@ -96,93 +72,90 @@
                     </div>
                 </div>
 
-
                 <!-- METRICS -->
-
                 <b     class=" key-value-pair" key="{{msg['metrics.mean']}}"     value="{{text.metrics.mean|number:3}}"></b>
                 <small class=" key-value-pair" key="{{msg['metrics.count']}}"    value="{{text.metrics.count|bigNumber}}"></small>
                 <small class=" key-value-pair" key="{{msg['metrics.countAll']}}" value="{{text.metrics.countAll|bigNumber}}"></small>
 
-                <hr>
-
-                <section>
-                    <button ng-if="!exportMode" type="button" class="btn btn-secondary" ng-click="tec.clearAll(true)">Очистить всё!</button>&nbsp;
-                    <button ng-if="!exportMode" type="button" class="btn btn-primary" ng-click="tec.exportText()">Экспортировать!</button>&nbsp;
-                    <button ng-if="exportMode" type="button" class="btn btn-primary" ng-click="tec.exportText()">Редактировать!</button>&nbsp;
+                <section class="row row-no-padding">
+                    <div class="col-xs-6" ng-if="!exportMode"><button  type="button" class="btn btn-secondary btn-block" ng-click="tec.clearAll(true)">Очистить всё!</button>&nbsp;</div>
+                    <div class="col-xs-6" ng-if="!exportMode"><button  type="button" class="btn btn-primary btn-block" ng-click="tec.exportText()">Экспортировать!</button>&nbsp;</div>
+                    <div class="col-xs-6" ng-if="exportMode"><button  type="button" class="btn btn-primary btn-block" ng-click="tec.exportText()">Редактировать!</button>&nbsp;</div>
                 </section>
 
             </aside>
 
-            <div class="col-lg-9">
-                <section class="text-block-main" ng-cloak ng-if="!exportMode">
+            <div class="row">
+
+                <div id="pusher" class="col-lg-3"></div>
+
+                <div class="col-lg-9">
+                    <section class="text-block-main" ng-cloak ng-if="!exportMode">
 
 
-                    <div class="paragraph" ng-repeat="para in text.paragraphs" style="{{text.paragraphsStyle(para)}}">
-                        <div class="p-index">{{$index+1}}</div>
-                        <div class="p-body" ng-click="selectParagraph($index)">
+                        <div class="paragraph" ng-repeat="para in text.paragraphs" style="{{text.paragraphsStyle(para)}}">
+                            <div class="p-index">{{$index+1}}</div>
+                            <div class="p-body" ng-click="selectParagraph($index)">
 
-                            <div class="cloner" >
-                                <!-- colored words -->
-                                <p ng-if="text.selectedParagraph!==para && !para.changed"><span
-                                    style="{{text.textStyle(v[1])}}"
-                                    ng-repeat="v in para.words">{{v[0]}}</span></p>
+                                <div class="cloner" >
+                                    <!-- colored words -->
+                                    <p ng-if="text.selectedParagraph!==para && !para.changed"><span
+                                        style="{{text.textStyle(v[1])}}"
+                                        ng-repeat="v in para.words">{{v[0]}}</span></p>
 
-                                <!-- just spacer to make textarea bigger -->
-                                <div class="spacer-text"
-                                    ng-if="text.selectedParagraph===para">{{text.selectedParagraph.text}}<br></div>
+                                    <!-- just spacer to make textarea bigger -->
+                                    <div class="spacer-text"
+                                        ng-if="text.selectedParagraph===para">{{text.selectedParagraph.text}}<br></div>
 
-                                <div class="spacer-text"
-                                    ng-if="para.loading">{{para.text}}<br></div>
+                                    <div class="spacer-text"
+                                        ng-if="para.loading">{{para.text}}<br></div>
 
 
-                                <throbber ng-if="para.loading" text="{{msg['throbber.colorizing']}}"></throbber>
+                                    <throbber ng-if="para.loading" text="{{msg['throbber.colorizing']}}"></throbber>
 
-                                <textarea
-                                    ng-class="[{'text-visible':text.selectedParagraph===para || para.changed}]"
-                                    ng-change="tec.onParagraphChanged($index)"
-                                    ng-focus="text.selectParagraph($index)"
-                                    ng-blur="tec.onParagraphBlur($index)"
-                                    ng-model="para.text"></textarea>
+                                    <textarea
+                                        ng-class="[{'text-visible':text.selectedParagraph===para || para.changed}]"
+                                        ng-change="tec.onParagraphChanged($index)"
+                                        ng-focus="text.selectParagraph($index)"
+                                        ng-blur="tec.onParagraphBlur($index)"
+                                        ng-model="para.text"></textarea>
+                                </div>
+
+                            </div>
+
+                            <div class="p-controls" ng-if="$index>0">
+                                <button
+                                	ng-if="!para.loading && !para.changed && !text.paragraphs[$index-1].loading && !text.paragraphs[$index-1].changed"
+                                	ng-click="tec.onParagraphMerge($index)"
+                                	type="button"
+                                	class="btn btn-secondary btn-circle"><i class="fa fa-plus"></i></button>
                             </div>
 
                         </div>
 
-                        <div class="p-controls" ng-if="$index>0">
-                            <button
-                            	ng-if="!para.loading && !para.changed && !text.paragraphs[$index-1].loading && !text.paragraphs[$index-1].changed"
-                            	ng-click="tec.onParagraphMerge($index)"
-                            	type="button"
-                            	class="btn btn-secondary btn-circle"><i class="fa fa-plus"></i></button>
-                        </div>
+                    </section>
 
-                    </div>
+                    <section ng-if="exportMode" class="padding-small keep-line-br">
+                        {{exportedText}}
+                    </section>
 
-                </section>
+                    <hr/>
+
+
+                    <footer class="padding-small">
+        				<small>Книга жалоб: <a href="https://github.com/compartia/wordPatternsUi/issues">GitHub issues</a></small><br>
+                        <small>Автор: <a href="http://www.zaborskiy.org/">Artem Zaborskiy</a></small><br>
+                        <small>Впервые исполнено на клавиатуре в поселке Убуд, Гианьярcкой области, в 2016 году</small>
+        			</footer>
+
+
+                </div>
+
             </div>
 
-</div>
-
-            <section ng-if="exportMode" class="padding-small keep-line-br">
-                {{exportedText}}
-            </section>
-
-             <hr/>
-
-
-
-            <hr/>
-
-
-            <footer class="padding-small">
-				<small>Книга жалоб: <a href="https://github.com/compartia/wordPatternsUi/issues">GitHub issues</a></small><br>
-                <small>Автор: <a href="http://www.zaborskiy.org/">Artem Zaborskiy</a></small><br>
-                <small>Впервые исполнено на клавиатуре в поселке Убуд, Гианьярcкой области, в 2016 году</small>
-			</footer>
 
         </main>
 
 
-        <!-- <script>var editor = new MediumEditor('.editable');</script>
-        <script>var editor2 = new MediumEditor('.editable2');</script> -->
     </body>
 </html>

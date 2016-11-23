@@ -76,7 +76,7 @@ Paragraphs = (function() {
     k = (val - this.metrics.min) / this.metrics.max;
     color = d3.color(uiColors['red']);
     color.opacity = Math.round(k * 1000) / 1000.0;
-    return 'border-left: 5px solid ' + color.toString() + ';';
+    return 'border-right: 5px solid ' + color.toString() + ';';
   };
 
   Paragraphs.prototype.textStyle = function(val) {
@@ -179,3 +179,5 @@ Paragraphs = (function() {
   return Paragraphs;
 
 })();
+
+//# sourceMappingURL=text.js.map

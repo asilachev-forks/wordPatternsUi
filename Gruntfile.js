@@ -78,15 +78,28 @@ module.exports = function(grunt) {
         coffee: {
             compile: {
                 options: {
-                    bare: true
+                    join: true,
+                    bare: true,
+                    sourceMap: true
+                },
+                files: {
+                    'src/main/resources/public/assets/build/all.js': 'src/main/coffee/*.coffee' // 1:1 compile
                 },
                 expand: true,
-                flatten: true,
-                bare: true,
-                cwd: 'src/main/coffee',
-                src: ['*.coffee'],
-                dest: 'src/main/resources/public/assets/build/',
-                ext: '.js'
+                flatten: true
+                    // bare: true,
+                    // cwd: 'src/main/coffee',
+                    // src: ['*.coffee'],
+                    // dest: 'src/main/resources/public/assets/build/',
+                    // ext: '.js'
+            }
+        },
+
+        sass: {
+            dist: {
+                files: {
+                    'src/main/resources/public/assets/css/az.css': 'src/main/sass/az.scss'
+                }
             }
         },
 
@@ -96,7 +109,12 @@ module.exports = function(grunt) {
                     'src/main/coffee/*.coffee'
                 ],
                 tasks: ['coffee:compile']
-            }
+            },
+
+            css: {
+                files: 'src/main/sass/*.scss',
+                tasks: ['sass']
+            },
         }
 
     });
@@ -126,5 +144,6 @@ module.exports = function(grunt) {
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-copy');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-sass');
     grunt.loadNpmTasks('grunt-contrib-jshint');
 };
