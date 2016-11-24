@@ -1,6 +1,6 @@
 var API_URL, NUMBER_OF_BINS, Paragraph, Paragraphs, TextController, chartsModule, dshc, getResponseError, kdDashboardApp, mean, meanInRange, mod_colors, text_metrics_module, uiColors;
 
-API_URL = 'http://localhost:8090/text/metrics/v2/';
+API_URL = 'https://textwell-api.herokuapp.com/text/metrics/v2/';
 
 text_metrics_module = angular.module('text_metrics.js', ['mod_colors.js']);
 

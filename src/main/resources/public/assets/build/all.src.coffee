@@ -1,12 +1,12 @@
-#var API_URL = 'https://textwell-api.herokuapp.com/text/metrics/v2/';
-API_URL = 'http://localhost:8090/text/metrics/v2/'
+API_URL = 'https://textwell-api.herokuapp.com/text/metrics/v2/'
+# API_URL = 'http://localhost:8090/text/metrics/v2/'
 text_metrics_module = angular.module('text_metrics.js', ['mod_colors.js'])
 
 
 TextController = ($scope, $http, $sce, $timeout) ->
     $scope.navState = 2; #half-opened by default
 
-    @showHideNav = ->        
+    @showHideNav = ->
         if $scope.navState == 2
             $scope.navState = 1
         else
